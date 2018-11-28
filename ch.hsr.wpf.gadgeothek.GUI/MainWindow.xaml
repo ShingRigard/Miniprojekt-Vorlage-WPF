@@ -5,8 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ch.hsr.wpf.gadgeothek.GUI"
         mc:Ignorable="d"
-        Title="Gadgeothek" Height="450" Width="800">
+        Title="Gadgeothek" Height="900" Width="1200" >
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="25" />
+        </Grid.RowDefinitions>
+        <TabControl HorizontalAlignment="Left" VerticalAlignment="Top" Height="auto" Width="auto" Grid.Row="0" Grid.Column="0">
+            <TabItem Header="Gadgets">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Clients">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Bookings">
+                <Grid Background="DimGray" />
+            </TabItem>
+        </TabControl>
+        <Button Grid.Row="1" Width="50" HorizontalAlignment="Right" Margin="5,0" />
+        <Button Grid.Row="1" Width="50" HorizontalAlignment="Right" Margin="5,0" />
+        <Button Grid.Row="1" Width="50" HorizontalAlignment="Right" Margin="5,0" />
+        <Button Grid.Row="1" Width="50" HorizontalAlignment="Right" Margin="5,0" />
+        <StatusBar Grid.Row="2" Height="auto" Width="auto">
+            <Grid Height="25" Width="1195">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="300" />
+                </Grid.ColumnDefinitions>
+        <StatusBarItem Grid.Column="0">
+                    <TextBlock Name="Status"></TextBlock>
+                </StatusBarItem>
+        <Separator Grid.Column="1" />
+        <StatusBarItem Grid.Column="2">
+            <TextBlock Name="Placeholder" />
+        </StatusBarItem>
+            <Separator Grid.Column="3" />
+        <StatusBarItem Grid.Column="4">
+            <ProgressBar Height="25" Width="300" />
+        </StatusBarItem>
+            </Grid>
+        </StatusBar>
     </Grid>
 </Window>
