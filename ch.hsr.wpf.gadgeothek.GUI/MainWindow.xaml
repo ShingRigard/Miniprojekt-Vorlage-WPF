@@ -14,7 +14,20 @@
         </Grid.RowDefinitions>
         <TabControl HorizontalAlignment="Left" VerticalAlignment="Top" Height="auto" Width="auto" Grid.Row="0" Grid.Column="0">
             <TabItem Header="Gadgets">
-                <Grid Background="#FFE5E5E5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
@@ -22,17 +35,53 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Clients">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                </Grid>
             </TabItem>
             <TabItem Header="Bookings">
-                <Grid Background="DimGray" />
+                <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                </Grid>
             </TabItem>
         </TabControl>
         <Button Grid.Row="1" Width="50" HorizontalAlignment="Right" Margin="5,0" />
-        <Button Grid.Row="1" Width="50" HorizontalAlignment="Right" Margin="5,0" />
-        <Button Grid.Row="1" Width="50" HorizontalAlignment="Right" Margin="5,0" />
-        <Button Grid.Row="1" Width="50" HorizontalAlignment="Right" Margin="5,0" />
-        <StatusBar Grid.Row="2" Height="auto" Width="auto">
+        <Button Grid.Row="1" Width="50" HorizontalAlignment="Right" Margin="65,0" />
+        <Button Grid.Row="1" Width="50" HorizontalAlignment="Right" Margin="125,0" />
+        <Button Grid.Row="1" Width="50" HorizontalAlignment="Right" Margin="185,0" />
+        <StatusBar Grid.Row="2" VerticalAlignment="Bottom">
             <Grid Height="25" Width="1195">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="300" />
@@ -41,17 +90,17 @@
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="300" />
                 </Grid.ColumnDefinitions>
-        <StatusBarItem Grid.Column="0">
-                    <TextBlock Name="Status"></TextBlock>
+                <StatusBarItem Grid.Column="0">
+                    <TextBlock Name="Status" />
                 </StatusBarItem>
-        <Separator Grid.Column="1" />
-        <StatusBarItem Grid.Column="2">
-            <TextBlock Name="Placeholder" />
-        </StatusBarItem>
-            <Separator Grid.Column="3" />
-        <StatusBarItem Grid.Column="4">
-            <ProgressBar Height="25" Width="300" />
-        </StatusBarItem>
+                <Separator Grid.Column="1" />
+                <StatusBarItem Grid.Column="2">
+                    <TextBlock Name="Placeholder" />
+                </StatusBarItem>
+                <Separator Grid.Column="3" />
+                <StatusBarItem Grid.Column="4">
+                    <ProgressBar Value="50"  Height="20" Width="290" />
+                </StatusBarItem>
             </Grid>
         </StatusBar>
     </Grid>
