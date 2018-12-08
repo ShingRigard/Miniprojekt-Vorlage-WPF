@@ -23,6 +23,10 @@ namespace ch.hsr.wpf.gadgeothek.GUI
         public MainWindow()
         {
             InitializeComponent();
+
+            //var vm = SomeViewModel();
+
+            //Datacontext = vm; // --> Binding in in XAML
         }
     }
 }
