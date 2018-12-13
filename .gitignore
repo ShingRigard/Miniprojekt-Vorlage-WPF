@@ -8,3 +8,5 @@ server/node_modules/
 server/Dockerfile
 
 Master_Layout_WPF\.JPG
+
+server/launch-server\.cmd
