@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ch.hsr.wpf.gadgeothek.GUI.ViewModels;
+using ch.hsr.wpf.gadgeothek.service;
 
 namespace ch.hsr.wpf.gadgeothek.GUI
 {
@@ -20,6 +23,14 @@ namespace ch.hsr.wpf.gadgeothek.GUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        public IEnumerable<CustomerViewModel> CustomerList { get; set; }
+        public ObservableCollection<GadgetViewModel> GadgetList { get; set; }
+        public ObservableCollection<ReservationViewModel> ReservationList { get; set; }
+        public ObservableCollection<LoanViewModel> LoanList { get; set; }
+        readonly LibraryAdminService _service;
+        private string _customerId;
+
+
         public MainWindow()
         {
             InitializeComponent();
