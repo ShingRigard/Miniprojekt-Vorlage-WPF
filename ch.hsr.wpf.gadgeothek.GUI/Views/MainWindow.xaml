@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ch.hsr.wpf.gadgeothek.GUI"
+        xmlns:local="clr-namespace:ch.hsr.wpf.gadgeothek.GUI.Views"
         mc:Ignorable="d"
         Title="Gadgeothek" Height="350" MinHeight="350" MinWidth="525" Width="525">
     <Grid>
@@ -13,27 +13,25 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="20" Margin="0,5,0,5"
                                 VerticalAlignment="Bottom">
                         <Button x:Name="AddGadget"
-                                Width="20"
-                                Height="20"
-                                Margin="5,0,0,0"
-                                Padding="0,0,0,0"
-                                Command="{Binding OpenAddGadgetCommand}"
+                                Margin="5,0,5,0"
+                                Padding="15,0,15,0"
+                                Command="{Binding AddGadgetCommand}"
                                 VerticalAlignment="Bottom">
-                            <Image Source="Images/add.jpg" />
+                            <Image Source="Images/add.png" />
                         </Button>
                         <Button x:Name="RemoveGadget"
                                 Margin="5,0,5,0"
                                 Padding="15,0,15,0"
                                 Command="{Binding RemoveGadgetCommand}"
                                 IsEnabled="{Binding IsGadgetSelected}">
-                            <Image Source="Images/delete.jpg" />
+                            <Image Source="Images/garbage.png" />
                         </Button>
                         <Button x:Name="EditGadgetButton"
-                                Margin="5,0,0,0"
+                                Margin="5,0,5,0"
                                 Padding="15,0,15,0"
                                 IsEnabled="{Binding IsGadgetSelected}"
                                 Command="{Binding EditGadgetCommand}">
-                            <Image Source="Images/edit.jpg" />
+                            <Image Source="Images/edit.png" />
                         </Button>
                     </StackPanel>
                     <DataGrid x:Name="GadgetsGrid"
@@ -43,7 +41,7 @@
                               VerticalAlignment="Top"
                               Margin="0,0,0,0" ColumnWidth="*"
                               IsSynchronizedWithCurrentItem="True"
-                              ItemsSource="{Binding GadgetsCollectionView}"
+                              ItemsSource="{Binding GadgetViewModel}"
                               SelectedItem="{Binding SelectedGadget, Mode=TwoWay}"
                               AutoGenerateColumns="False">
                         <DataGrid.Columns>
@@ -74,11 +72,17 @@
                                 Height="20"
                                 Margin="0,5,0,5"
                                 VerticalAlignment="Bottom">
-                        <Button x:Name="AddLoanButton" Content="Neue Ausleihe" Width="Auto" Height="20"
-                                Margin="5,0,0,0" Padding="15,0,15,0" Command="{Binding AddLoanCommand}"
-                                VerticalAlignment="Bottom" />
+                        <Button x:Name="AddLoanButton"
+                                Width="Auto"
+                                Height="20"
+                                Margin="5,0,0,0"
+                                Padding="15,0,15,0"
+                                Command="{Binding AddLoanCommand}"
+                                VerticalAlignment="Bottom">
+                            <Image Source="Images/add.png" />
+                        </Button>
                     </StackPanel>
-                    <DataGrid x:Name="loanGrid" HorizontalAlignment="Stretch"
+                    <DataGrid x:Name="LoanGrid" HorizontalAlignment="Stretch"
                               VerticalScrollBarVisibility="Auto" CanUserAddRows="False" VerticalAlignment="Top"
                               Margin="0,0,0,0" ColumnWidth="*"
                               IsSynchronizedWithCurrentItem="True"
@@ -104,21 +108,32 @@
             </TabItem>
             <TabItem Header="Kunden" Padding="15,0,15,0">
                 <Grid Background="#FFE5E5E5">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="20" Margin="0,5,0,5"
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                Height="20"
+                                Margin="0,5,0,5"
                                 VerticalAlignment="Bottom">
-                        <Button x:Name="AddCustomerButton" Content="Kunde hinzufügen" Width="Auto" Height="20"
-                                Margin="5,0,0,0" Padding="15,0,15,0" Command="{Binding AddCustomerCommand}"
-                                VerticalAlignment="Bottom" />
-                        <Button x:Name="RemoveCustomerButton" Content="Kunde löschen" Margin="5,0,0,0"
+                        <Button x:Name="AddCustomerButton"
+                                Width="Auto" Height="20"
+                                Margin="5,0,0,0"
+                                Padding="15,0,15,0"
+                                Command="{Binding AddCustomerCommand}"
+                                VerticalAlignment="Bottom">
+                            <Image Source="Images/add.png" />
+                        </Button>
+                        <Button x:Name="RemoveCustomerButton" Margin="5,0,0,0"
                                 Padding="15,0,15,0"
                                 Command="{Binding RemoveCustomerCommand}"
-                                IsEnabled="{Binding IsCustomerSelected}" />
+                                IsEnabled="{Binding IsCustomerSelected}">
+                            <Image Source="Images/garbage.png" />
+                        </Button>
                         <Button x:Name="EditCustomerButton"
-                                Content="Kunde editieren"
                                 Margin="5,0,0,0"
                                 Padding="15,0,15,0"
                                 IsEnabled="{Binding IsCustomerSelected}"
-                                Command="{Binding EditCustomerCommand}" />
+                                Command="{Binding EditCustomerCommand}">
+                            <Image Source="Images/edit.png" />
+                        </Button>
                     </StackPanel>
                     <DataGrid x:Name="CustomerGrid" HorizontalAlignment="Stretch"
                               VerticalScrollBarVisibility="Auto" CanUserAddRows="False" VerticalAlignment="Top"
