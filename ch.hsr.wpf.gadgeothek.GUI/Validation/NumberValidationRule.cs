@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Controls;
 
-namespace AutoReservation.GUI.Validation
+namespace ch.hsr.wpf.gadgeothek.GUI.Validation
 {
     public class NumberValidationRule : ValidationRule
     {
@@ -15,12 +15,12 @@ namespace AutoReservation.GUI.Validation
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            int number=0;
+            int number = 0;
 
             try
             {
-                if (((string)value).Length > 0)
-                    number = Int32.Parse((String)value);
+                if (((string) value).Length > 0)
+                    number = Int32.Parse((String) value);
             }
             catch (Exception e)
             {

@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Windows.Controls;
 
-namespace AutoReservation.GUI.Validation
+namespace ch.hsr.wpf.gadgeothek.GUI.Validation
 {
     public class StringValidationRule : ValidationRule
     {
@@ -21,13 +21,14 @@ namespace AutoReservation.GUI.Validation
             {
                 return new ValidationResult(false, "Value is not a string");
             }
-            str = (string)value;
+
+            str = (string) value;
 
             if (!CanBeEmpty && str.Length == 0)
             {
                 return new ValidationResult(false, "Value can't be empty");
             }
-            else if(str.Length < Min || Max > 0 && str.Length > Max)
+            else if (str.Length < Min || Max > 0 && str.Length > Max)
             {
                 return new ValidationResult(false, $"String length has to be in the range: {Min} - {Max}");
             }
