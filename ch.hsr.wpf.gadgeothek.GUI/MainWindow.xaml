@@ -7,10 +7,32 @@
         mc:Ignorable="d"
         Title="Gadgeothek" Height="350" MinHeight="350" MinWidth="525" Width="525">
     <Grid>
-        <TabControl x:Name="TabControl" MinHeight="320" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <TabItem Header="Gadgets" Padding="15,0,15,0">
+        <TabControl x:Name="TabControl"
+                    MinHeight="320"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
+            <TabItem Header="Gadgets"
+                     Padding="15,0,15,0">
                 <Grid Background="#FFE5E5E5">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="20" Margin="0,5,0,5"
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                Grid.Column="0"
+                                Grid.Row="5"
+                                Height="20"
+                                Margin="0,5,0,5"
                                 VerticalAlignment="Bottom">
                         <Button x:Name="AddGadget"
                                 Margin="5,0,5,0"
@@ -34,7 +56,8 @@
                             <Image Source="Views/Images/edit.png" />
                         </Button>
                     </StackPanel>
-                    <DataGrid x:Name="GadgetsGrid"
+                    <DataGrid Grid.Row="0" Grid.Column="0"
+                              x:Name="GadgetsGrid"
                               HorizontalAlignment="Stretch"
                               VerticalScrollBarVisibility="Auto"
                               CanUserAddRows="False"
@@ -46,27 +69,109 @@
                               AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID"
-                                                Width="40"
                                                 IsReadOnly="True"
-                                                Binding="{Binding InventoryNumber}" />
+                                                Binding="{Binding InventoryNumberGatgetDataGrid}" />
                             <DataGridTextColumn Header="Name"
                                                 IsReadOnly="True"
-                                                Binding="{Binding Name}" />
+                                                Binding="{Binding NameGatgetDataGrid}" />
                             <DataGridTextColumn Header="Hersteller"
                                                 IsReadOnly="True"
-                                                Binding="{Binding Manufacturer}" />
+                                                Binding="{Binding ManufacturerGatgetDataGrid}" />
                             <DataGridTextColumn Header="Preis"
                                                 IsReadOnly="True"
-                                                Binding="{Binding Price}" />
+                                                Binding="{Binding PriceGatgetDataGrid}" />
                             <DataGridTextColumn Header="Zustand"
                                                 IsReadOnly="True"
-                                                Binding="{Binding Condition}" />
+                                                Binding="{Binding ConditionGatgetDataGrid}" />
                         </DataGrid.Columns>
                     </DataGrid>
+                    <Label Grid.Row="1"
+                           Grid.Column="1"
+                           Margin="15,0,0,0">
+                        Name
+                    </Label>
+                    <TextBox Grid.Row="1"
+                             Grid.Column="2"
+                             Margin="5"
+                             x:Name="textNameEditGatget"
+                             Text="{Binding GadgetEditName, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
+
+                    <Label Grid.Row="2"
+                           Grid.Column="1"
+                           Margin="15,0,0,0">
+                        Hersteller
+                    </Label>
+                    <TextBox Grid.Row="2"
+                             Grid.Column="2"
+                             Margin="5"
+                             x:Name="textManufacturerEditGatget"
+                             Text="{Binding GatgetEditManufacturer, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
+                    <Label Grid.Row="3"
+                           Grid.Column="1"
+                           Margin="15,0,0,0">
+                        Preis
+                    </Label>
+                    <TextBox Grid.Row="3"
+                             Grid.Column="2"
+                             Margin="5"
+                             x:Name="textPriceEditGatget"
+                             Text="{Binding GadgetEditPrice, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
+                    <Label Grid.Row="4"
+                           Grid.Column="1"
+                           Margin="15,0,0,0">
+                        Condition:
+                    </Label>
+                    <ComboBox Grid.Row="4"
+                              Grid.Column="2"
+                              Margin="5"
+                              HorizontalAlignment="Stretch"
+                              SelectedIndex="0"
+                              x:Name="comboBoxConditionEditGatget"
+                              ItemsSource="{Binding Source={StaticResource conditions}}"
+                              SelectedItem="{Binding ConditionGatgetTab, Mode=TwoWay}" />
+                    <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="5"
+                            Grid.Column="1" Grid.ColumnSpan="2">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button x:Name="buttonCancelEditGadget"
+                                    Height="20"
+                                    Margin="5,0,5,0"
+                                    Padding="15,0,15,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Command="{Binding CancelCommandGatgetTab, Mode=OneWay}"
+                                    CommandParameter="{Binding ElementName=ChangeGadgetWindow}">
+                                <Image Source="Views/Images/garbage.png" />
+                            </Button>
+                            <Button x:Name="buttonSaveEditGadget"
+                                    Height="20"
+                                    Margin="5,0,5,0"
+                                    Padding="15,0,15,0"
+                                    IsEnabled="{Binding HasErrors, Converter={StaticResource BooleanInversionConverter}, Mode=OneWay}"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Command="{Binding SaveCommandGatgetTab, Mode=OneWay}"
+                                    CommandParameter="{Binding ElementName=ChangeGadgetWindow}">
+                                <Image Source="Views/Images/save.png" />
+                            </Button>
+                        </StackPanel>
+                    </Border>
                 </Grid>
             </TabItem>
             <TabItem Header="Ausleihe" Padding="15,0,15,0">
                 <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center"
                                 Height="20"
@@ -79,35 +184,130 @@
                                 Padding="15,0,15,0"
                                 Command="{Binding AddLoanCommand}"
                                 VerticalAlignment="Bottom">
-                            <Image Source="Images/add.png" />
+                            <Image Source="Views/Images/add.png" />
                         </Button>
                     </StackPanel>
-                    <DataGrid x:Name="LoanGrid" HorizontalAlignment="Stretch"
-                              VerticalScrollBarVisibility="Auto" CanUserAddRows="False" VerticalAlignment="Top"
-                              Margin="0,0,0,0" ColumnWidth="*"
+                    <DataGrid Grid.Column="0"
+                              x:Name="LoanGrid"
+                              HorizontalAlignment="Stretch"
+                              VerticalScrollBarVisibility="Auto"
+                              CanUserAddRows="False"
+                              VerticalAlignment="Top"
+                              Margin="0,0,0,0"
+                              ColumnWidth="*"
                               IsSynchronizedWithCurrentItem="True"
                               ItemsSource="{Binding GadgetsCollectionView}"
-                              SelectedItem="{Binding SelectedGadget, Mode=TwoWay}"
+                              SelectedItem="{Binding SelectedLoan, Mode=TwoWay}"
                               AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" Width="40" IsReadOnly="True"
-                                                Binding="{Binding StudentNumber}" />
-                            <DataGridTextColumn Header="Kunde" IsReadOnly="True" Binding="{Binding Customer.Name}" />
-                            <DataGridTextColumn Header="Gadget" IsReadOnly="True" Binding="{Binding Gadget.Name}" />
-                            <DataGridTextColumn Header="Ausgeliehen am" IsReadOnly="True"
-                                                Binding="{Binding PickupDate, StringFormat=\{0:dd.MM.yyyy\}}" />
-                            <DataGridTextColumn Header="Zurück bis" IsReadOnly="True"
-                                                Binding="{Binding OverDueDate, StringFormat=\{0:dd.MM.yyyy\}}" />
-                            <DataGridCheckBoxColumn Header="Fällig" IsReadOnly="True"
-                                                    Binding="{Binding IsOverdue, Mode=OneWay}" />
-                            <DataGridCheckBoxColumn Header="Zurückgegeben" IsReadOnly="True"
-                                                    Binding="{Binding WasReturned, Mode=OneWay}" />
+                            <DataGridTextColumn Header="ID"
+                                                IsReadOnly="True"
+                                                Binding="{Binding StudentNumberLoanDataGrid}" />
+                            <DataGridTextColumn Header="Kunde"
+                                                IsReadOnly="True"
+                                                Binding="{Binding CustomerLoanDataGrid.Name}" />
+                            <DataGridTextColumn Header="Gadget"
+                                                IsReadOnly="True"
+                                                Binding="{Binding GadgetLoanDataGrid.Name}" />
+                            <DataGridTextColumn Header="Ausgeliehen am"
+                                                IsReadOnly="True"
+                                                Binding="{Binding PickupDateLoanDataGrid, StringFormat=\{0:dd.MM.yyyy\}}" />
+                            <DataGridTextColumn Header="Zurück bis"
+                                                IsReadOnly="True"
+                                                Binding="{Binding OverDueDateLoanDataGrid, StringFormat=\{0:dd.MM.yyyy\}}" />
+                            <DataGridCheckBoxColumn Header="Fällig"
+                                                    IsReadOnly="True"
+                                                    Binding="{Binding IsOverdueLoanDataGrid, Mode=OneWay}" />
+                            <DataGridCheckBoxColumn Header="Zurückgegeben"
+                                                    IsReadOnly="True"
+                                                    Binding="{Binding WasReturnedLoanDataGrid, Mode=OneWay}" />
                         </DataGrid.Columns>
                     </DataGrid>
+                    <!--TODO Ausleihe editieren -->
+                    <Label Grid.Row="1"
+                           Grid.Column="1"
+                           Margin="15,0,0,0">
+                        Studentennummer
+                    </Label>
+                    <TextBox Grid.Row="1"
+                             Grid.Column="2"
+                             Margin="5"
+                             x:Name="textStudenNumberNewLoan"
+                             Text="{Binding LoanNewStudentNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
+
+                    <Label Grid.Row="2"
+                           Grid.Column="1"
+                           Margin="15,0,0,0">
+                        Gadgetnummer
+                    </Label>
+                    <TextBox Grid.Row="2"
+                             Grid.Column="2"
+                             Margin="5"
+                             x:Name="textGatgetIdNewLoan"
+                             Text="{Binding LoanNewGatgetId, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
+                    <Label Grid.Row="3"
+                           Grid.Column="1"
+                           Margin="15,0,0,0">
+                        Auslgeliehen am
+                    </Label>
+                    <DatePicker Grid.Row="3"
+                                Grid.Column="2"
+                                Margin="5"
+                                x:Name="DatePickerPickUpDateNewLoan"
+                                ></DatePicker>
+                    <Label Grid.Row="4"
+                           Grid.Column="1"
+                           Margin="15,0,0,0">
+                        Rückgabe am
+                    </Label>
+                    <DatePicker Grid.Row="4"
+                                Grid.Column="2"
+                                Margin="5"
+                                x:Name="DatePickerReturnDateNewLoan"
+                    ></DatePicker>
+                    <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="5"
+                            Grid.Column="1" Grid.ColumnSpan="2">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button x:Name="buttonCancelNewLoan"
+                                    Height="20"
+                                    Margin="5,0,5,0"
+                                    Padding="15,0,15,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Command="{Binding CancelCommandGatgetTab, Mode=OneWay}"
+                                    CommandParameter="{Binding ElementName=ChangeGadgetWindow}">
+                                <Image Source="Views/Images/garbage.png" />
+                            </Button>
+                            <Button x:Name="buttonSaveNewLoan"
+                                    Height="20"
+                                    Margin="5,0,5,0"
+                                    Padding="15,0,15,0"
+                                    IsEnabled="{Binding HasErrors, Converter={StaticResource BooleanInversionConverter}, Mode=OneWay}"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Command="{Binding SaveCommandGatgetTab, Mode=OneWay}"
+                                    CommandParameter="{Binding ElementName=ChangeGadgetWindow}">
+                                <Image Source="Views/Images/save.png" />
+                            </Button>
+                        </StackPanel>
+                    </Border>
                 </Grid>
             </TabItem>
-            <TabItem Header="Kunden" Padding="15,0,15,0">
+            <TabItem Header="Kunden"
+                     Padding="15,0,15,0">
                 <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center"
                                 Height="20"
@@ -119,40 +319,104 @@
                                 Padding="15,0,15,0"
                                 Command="{Binding AddCustomerCommand}"
                                 VerticalAlignment="Bottom">
-                            <Image Source="Images/add.png" />
+                            <Image Source="Views/Images/add.png" />
                         </Button>
                         <Button x:Name="RemoveCustomerButton" Margin="5,0,0,0"
                                 Padding="15,0,15,0"
                                 Command="{Binding RemoveCustomerCommand}"
                                 IsEnabled="{Binding IsCustomerSelected}">
-                            <Image Source="Images/garbage.png" />
+                            <Image Source="Views/Images/garbage.png" />
                         </Button>
                         <Button x:Name="EditCustomerButton"
                                 Margin="5,0,0,0"
                                 Padding="15,0,15,0"
                                 IsEnabled="{Binding IsCustomerSelected}"
                                 Command="{Binding EditCustomerCommand}">
-                            <Image Source="Images/edit.png" />
+                            <Image Source="Views/Images/edit.png" />
                         </Button>
                     </StackPanel>
-                    <DataGrid x:Name="CustomerGrid" HorizontalAlignment="Stretch"
-                              VerticalScrollBarVisibility="Auto" CanUserAddRows="False" VerticalAlignment="Top"
-                              Margin="0,0,0,0" ColumnWidth="*"
+                    <DataGrid x:Name="CustomerGrid"
+                              HorizontalAlignment="Stretch"
+                              VerticalScrollBarVisibility="Auto"
+                              CanUserAddRows="False"
+                              VerticalAlignment="Top"
+                              Margin="0,0,0,0"
+                              ColumnWidth="*"
                               IsSynchronizedWithCurrentItem="True"
-                              ItemsSource="{Binding GadgetsCollectionView}"
-                              SelectedItem="{Binding SelectedGadget, Mode=TwoWay}"
-                              AutoGenerateColumns="False" Grid.ColumnSpan="2">
+                              ItemsSource="{Binding CustomerCollectionView}"
+                              SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}"
+                              AutoGenerateColumns="False"
+                              Grid.Column="0">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Width="40" IsReadOnly="True"
-                                                Binding="{Binding StudentNumber}" />
-                            <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name}" />
-                            <DataGridTextColumn Header="Passwort" IsReadOnly="True" Binding="{Binding Password}" />
-                            <DataGridTextColumn Header="Email" IsReadOnly="True" Binding="{Binding Email}" />
+                                                Binding="{Binding StudentNumberCustomerDataGrid}" />
+                            <DataGridTextColumn Header="Name" IsReadOnly="True"
+                                                Binding="{Binding NameCustomerDataGrid}" />
+                            <DataGridTextColumn Header="Passwort" IsReadOnly="True"
+                                                Binding="{Binding PasswordCustomerDataGrid}" />
+                            <DataGridTextColumn Header="Email" IsReadOnly="True"
+                                                Binding="{Binding EmailCustomerDataGrid}" />
                         </DataGrid.Columns>
                     </DataGrid>
+                    <Label Grid.Row="1"
+                           Grid.Column="1"
+                           Margin="15,0,0,0">
+                        Name
+                    </Label>
+                    <TextBox Grid.Row="1"
+                             Grid.Column="2"
+                             Margin="5"
+                             x:Name="textNameEditCustomer"
+                             Text="{Binding CustomerEditName, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
+
+                    <Label Grid.Row="2"
+                           Grid.Column="1"
+                           Margin="15,0,0,0">
+                        Passwort
+                    </Label>
+                    <TextBox Grid.Row="2"
+                             Grid.Column="2"
+                             Margin="5"
+                             x:Name="textPasswordEditCustomer"
+                             Text="{Binding CustomerEditPassword, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
+                    <Label Grid.Row="3"
+                           Grid.Column="1"
+                           Margin="15,0,0,0">
+                        Email
+                    </Label>
+                    <TextBox Grid.Row="3"
+                             Grid.Column="2"
+                             Margin="5"
+                             x:Name="textEmailEditCustomer"
+                             Text="{Binding CustomerEditEmail, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
+                    <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="5"
+                            Grid.Column="1" Grid.ColumnSpan="2">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button x:Name="buttonCancelCustomerTab"
+                                    Height="20"
+                                    Margin="5,0,5,0"
+                                    Padding="15,0,15,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Command="{Binding CancelCommandEditCustomer, Mode=OneWay}"
+                                    CommandParameter="{Binding ElementName=ChangeGadgetWindow}">
+                                <Image Source="Views/Images/garbage.png" />
+                            </Button>
+                            <Button x:Name="buttonSaveEditCustomer"
+                                    Height="20"
+                                    Margin="5,0,5,0"
+                                    Padding="15,0,15,0"
+                                    IsEnabled="{Binding HasErrors, Converter={StaticResource BooleanInversionConverter}, Mode=OneWay}"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Command="{Binding SaveCommandEditCustomer, Mode=OneWay}"
+                                    CommandParameter="{Binding ElementName=ChangeGadgetWindow}">
+                                <Image Source="Views/Images/save.png" />
+                            </Button>
+                        </StackPanel>
+                    </Border>
                 </Grid>
             </TabItem>
         </TabControl>
-
     </Grid>
 </Window>
