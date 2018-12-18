@@ -11,7 +11,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using ch.hsr.wpf.gadgeothek.GUI.ViewModels;
 
 namespace ch.hsr.wpf.gadgeothek.GUI
 {
@@ -20,12 +19,9 @@ namespace ch.hsr.wpf.gadgeothek.GUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindowViewModel MainWindowViewModel { get; set; }
         public MainWindow()
         {
             InitializeComponent();
-            MainWindowViewModel = new MainWindowViewModel();
-            DataContext = MainWindowViewModel;
         }
     }
 }
