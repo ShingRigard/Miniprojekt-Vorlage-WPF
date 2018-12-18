@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ch.hsr.wpf.gadgeothek.GUI"
+        xmlns:c="clr-namespace:AutoReservation.GUI.Validation"
         mc:Ignorable="d"
         Title="Gadgeothek" Height="350" MinHeight="350" MinWidth="525" Width="525">
     <Grid>
@@ -15,9 +16,9 @@
                      Padding="15,0,15,0">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30" />
@@ -64,25 +65,25 @@
                               VerticalAlignment="Top"
                               Margin="0,0,0,0" ColumnWidth="*"
                               IsSynchronizedWithCurrentItem="True"
-                              ItemsSource="{Binding GadgetViewModel}"
+                              ItemsSource="{Binding Gadget}"
                               SelectedItem="{Binding SelectedGadget, Mode=TwoWay}"
                               AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID"
                                                 IsReadOnly="True"
-                                                Binding="{Binding InventoryNumberGatgetDataGrid}" />
+                                                Binding="{Binding GadgetInventoryNumber}" />
                             <DataGridTextColumn Header="Name"
                                                 IsReadOnly="True"
-                                                Binding="{Binding NameGatgetDataGrid}" />
+                                                Binding="{Binding GadgetName}" />
                             <DataGridTextColumn Header="Hersteller"
                                                 IsReadOnly="True"
-                                                Binding="{Binding ManufacturerGatgetDataGrid}" />
+                                                Binding="{Binding GadgetManufacturer}" />
                             <DataGridTextColumn Header="Preis"
                                                 IsReadOnly="True"
-                                                Binding="{Binding PriceGatgetDataGrid}" />
+                                                Binding="{Binding GadgetPrice}" />
                             <DataGridTextColumn Header="Zustand"
                                                 IsReadOnly="True"
-                                                Binding="{Binding ConditionGatgetDataGrid}" />
+                                                Binding="{Binding GadgetCondition}" />
                         </DataGrid.Columns>
                     </DataGrid>
                     <Label Grid.Row="1"
@@ -93,8 +94,15 @@
                     <TextBox Grid.Row="1"
                              Grid.Column="2"
                              Margin="5"
-                             x:Name="textNameEditGatget"
-                             Text="{Binding GadgetEditName, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
+                             x:Name="textNameEditGatget">
+                        <TextBox.Text>
+                            <Binding Path="SelectedGadget.GadgetName">
+                                <Binding.ValidationRules>
+                                    <c:StringValidationRule Max="20" CanBeEmpty="false"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
 
                     <Label Grid.Row="2"
                            Grid.Column="1"
@@ -104,8 +112,15 @@
                     <TextBox Grid.Row="2"
                              Grid.Column="2"
                              Margin="5"
-                             x:Name="textManufacturerEditGatget"
-                             Text="{Binding GatgetEditManufacturer, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
+                             x:Name="textManufacturerEditGatget">
+                        <TextBox.Text>
+                            <Binding Path="SelectedGadget.GadgetManufacturer">
+                                <Binding.ValidationRules>
+                                    <c:StringValidationRule Max="20" CanBeEmpty="false"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
                     <Label Grid.Row="3"
                            Grid.Column="1"
                            Margin="15,0,0,0">
@@ -114,8 +129,15 @@
                     <TextBox Grid.Row="3"
                              Grid.Column="2"
                              Margin="5"
-                             x:Name="textPriceEditGatget"
-                             Text="{Binding GadgetEditPrice, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
+                             x:Name="textPriceEditGatget">
+                        <TextBox.Text>
+                            <Binding Path="SelectedGadget.GadgetPrice">
+                                <Binding.ValidationRules>
+                                    <c:NumberValidationRule Max="20" CanBeEmpty="false"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
                     <Label Grid.Row="4"
                            Grid.Column="1"
                            Margin="15,0,0,0">
@@ -227,12 +249,19 @@
                     <Label Grid.Row="1"
                            Grid.Column="1"
                            Margin="15,0,0,0">
-                        Studentennummer
                     </Label>
                     <TextBox Grid.Row="1"
                              Grid.Column="2"
                              Margin="5"
-                             x:Name="textStudenNumberNewLoan"
+                             x:Name="textStudenNumberNewLoan">
+                        <TextBox.Text>
+                            <Binding Path="SelectedLoan.Name">
+                                <Binding.ValidationRules>
+                                    <c:StringValidationRule Max="20" CanBeEmpty="false"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
                              Text="{Binding LoanNewStudentNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
 
                     <Label Grid.Row="2"
@@ -349,13 +378,13 @@
                               Grid.Column="0">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Width="40" IsReadOnly="True"
-                                                Binding="{Binding StudentNumberCustomerDataGrid}" />
+                                                Binding="{Binding StudentNumberCustomer}" />
                             <DataGridTextColumn Header="Name" IsReadOnly="True"
-                                                Binding="{Binding NameCustomerDataGrid}" />
+                                                Binding="{Binding CustomerName}" />
                             <DataGridTextColumn Header="Passwort" IsReadOnly="True"
-                                                Binding="{Binding PasswordCustomerDataGrid}" />
+                                                Binding="{Binding CustomerPassword}" />
                             <DataGridTextColumn Header="Email" IsReadOnly="True"
-                                                Binding="{Binding EmailCustomerDataGrid}" />
+                                                Binding="{Binding CustomerEmail}" />
                         </DataGrid.Columns>
                     </DataGrid>
                     <Label Grid.Row="1"
@@ -366,9 +395,15 @@
                     <TextBox Grid.Row="1"
                              Grid.Column="2"
                              Margin="5"
-                             x:Name="textNameEditCustomer"
-                             Text="{Binding CustomerEditName, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
-
+                             x:Name="textNameEditCustomer">
+                        <TextBox.Text>
+                            <Binding Path="SelectedCustomer.CustomerName">
+                                <Binding.ValidationRules>
+                                    <c:StringValidationRule Max="20" CanBeEmpty="false"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
                     <Label Grid.Row="2"
                            Grid.Column="1"
                            Margin="15,0,0,0">
@@ -377,8 +412,15 @@
                     <TextBox Grid.Row="2"
                              Grid.Column="2"
                              Margin="5"
-                             x:Name="textPasswordEditCustomer"
-                             Text="{Binding CustomerEditPassword, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
+                             x:Name="textPasswordEditCustomer">
+                        <TextBox.Text>
+                            <Binding Path="SelectedCustomer.CustomerPassword">
+                                <Binding.ValidationRules>
+                                    <c:StringValidationRule Max="20" CanBeEmpty="false"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
                     <Label Grid.Row="3"
                            Grid.Column="1"
                            Margin="15,0,0,0">
@@ -387,8 +429,15 @@
                     <TextBox Grid.Row="3"
                              Grid.Column="2"
                              Margin="5"
-                             x:Name="textEmailEditCustomer"
-                             Text="{Binding CustomerEditEmail, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
+                             x:Name="textEmailEditCustomer">
+                        <TextBox.Text>
+                            <Binding Path="SelectedCustomer.CustomerEmail">
+                                <Binding.ValidationRules>
+                                    <c:StringValidationRule Max="20" CanBeEmpty="false"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
                     <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="5"
                             Grid.Column="1" Grid.ColumnSpan="2">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

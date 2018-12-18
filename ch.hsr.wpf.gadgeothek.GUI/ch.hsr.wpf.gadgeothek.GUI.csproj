@@ -59,6 +59,9 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Validation\DateValidationRule.cs" />
+    <Compile Include="Validation\NumberValidationRule.cs" />
+    <Compile Include="Validation\StringValidationRule.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\GadgetViewModel.cs" />
     <Compile Include="ViewModels\LoanViewModel.cs" />
