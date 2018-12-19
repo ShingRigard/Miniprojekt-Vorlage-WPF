@@ -276,45 +276,48 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
                     if(!loanItem.Equals(SelectedLoan))
                     Loans.Add(loanItem);
                 }
-                if (SelectedGadget == null)
+                if (SelectedLoan == null)
                 {
-                    Gadgets.Clear();
-                }
-                else if (SelectedGadget != null)
-                {
-                    List<Gadget> GadgetList = Gadgets.ToList();
-                    foreach (Gadget GadgetItem in GadgetList)
+                    if (SelectedGadget == null)
+                    {
+                        Gadgets.Clear();
+                    }
+                    else if (SelectedGadget != null)
+                    {
+                        List<Gadget> GadgetList = Gadgets.ToList();
+                        foreach (Gadget GadgetItem in GadgetList)
+                        {
+                            if (!GadgetItem.Equals(SelectedGadget))
+                            {
+                                Gadgets.Remove(GadgetItem);
+                            }
+                        }
+                    }
+                    foreach (Gadget GadgetItem in updatedGadgets)
                     {
                         if (!GadgetItem.Equals(SelectedGadget))
+                            Gadgets.Add(GadgetItem);
+                    }
+                    if (SelectedCustomer == null)
+                    {
+                        Customers.Clear();
+                    }
+                    else if (SelectedCustomer != null)
+                    {
+                        List<Customer> CustomerList = Customers.ToList();
+                        foreach (Customer CustomerItem in CustomerList)
                         {
-                            Gadgets.Remove(GadgetItem);
+                            if (!CustomerItem.Equals(SelectedCustomer))
+                            {
+                                Customers.Remove(CustomerItem);
+                            }
                         }
                     }
-                }
-                foreach (Gadget GadgetItem in updatedGadgets)
-                {
-                    if (!GadgetItem.Equals(SelectedGadget))
-                        Gadgets.Add(GadgetItem);
-                }
-                if (SelectedCustomer == null)
-                {
-                    Customers.Clear();
-                }
-                else if (SelectedCustomer != null)
-                {
-                    List<Customer> CustomerList = Customers.ToList();
-                    foreach (Customer CustomerItem in CustomerList)
+                    foreach (Customer CustomerItem in updatedCustomers)
                     {
                         if (!CustomerItem.Equals(SelectedCustomer))
-                        {
-                            Customers.Remove(CustomerItem);
-                        }
+                            Customers.Add(CustomerItem);
                     }
-                }
-                foreach (Customer CustomerItem in updatedCustomers)
-                {
-                    if (!CustomerItem.Equals(SelectedCustomer))
-                        Customers.Add(CustomerItem);
                 }
             }
         }
@@ -439,7 +442,7 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
                         MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
                 if (rsltMessageBox == MessageBoxResult.Yes)
                 {
-                    if (SelectedCustomer != null && libraryAdminService.DeleteLoan(SelectedLoan))
+                    if (SelectedLoan != null && libraryAdminService.DeleteLoan(SelectedLoan))
                     {
                         Loans.Remove(SelectedLoan);
                     }
