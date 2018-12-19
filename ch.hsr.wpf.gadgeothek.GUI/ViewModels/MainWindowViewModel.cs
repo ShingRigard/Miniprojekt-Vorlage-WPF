@@ -367,7 +367,6 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
         {
             Gadgets.Clear();
             libraryAdminService.GetAllGadgets().ForEach(Gadgets.Add);
-            SelectedGadget = Gadgets.FirstOrDefault();
         }
         #endregion
 
@@ -419,7 +418,6 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
         {
             Customers.Clear();
             libraryAdminService.GetAllCustomers().ForEach(Customers.Add);
-            SelectedCustomer = Customers.FirstOrDefault();
         }
         #endregion
 
@@ -471,7 +469,6 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
         {
             Loans.Clear();
             libraryAdminService.GetAllLoans().ForEach(Loans.Add);
-            SelectedLoan = Loans.FirstOrDefault();
         }
         #endregion
     }

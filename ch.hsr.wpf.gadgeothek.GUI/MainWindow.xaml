@@ -79,7 +79,7 @@
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
                         <Button Content="Delete" Margin="1" Command="{Binding DeleteGadgetCommand}" />
                         <Button Content="Save" Margin="1" Command="{Binding SaveGadgetCommand}"/>
-                        <Button Content="New" Margin="1" Command="{Binding NewGadgetCommand}"/>
+                        <Button Content="New" Margin="1"  Click="New_Click_Gadget"/>
                         <Button Content="Refresh" Margin="1" Command="{Binding LoadGadgetCommand}"/>
                     </StackPanel>
                 </Grid>
@@ -102,7 +102,7 @@
                         </Grid.RowDefinitions>
                         <Label Grid.ColumnSpan="2" Content="Client-List" FontStyle="Italic" FontWeight="Bold" />
                         <DataGrid Grid.Row="1"
-                      Name="ClientDataGrid" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False"
+                      Name="CustomerDataGrid" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False"
                       SelectionMode="Single" IsReadOnly="True" GridLinesVisibility="None" SelectionUnit="FullRow"
                       CanUserResizeRows="False"
                       ItemsSource="{Binding Customers}" 
@@ -176,7 +176,7 @@
                     <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2">
                         <Button Content="Delete" Margin="1" Command="{Binding DeleteCustomerCommand}" />
                         <Button Content="Save" Margin="1" Command="{Binding SaveCustomerCommand}"/>
-                        <Button Content="New" Margin="1" Command="{Binding NewCustomerCommand}"/>
+                        <Button Content="New" Margin="1" Click="New_Click_Customer"/>
                         <Button Content="Refresh" Margin="1" Command="{Binding LoadCustomerCommand}"/>
                     </StackPanel>
                 </Grid>
@@ -259,7 +259,7 @@
                     <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2">
                         <Button Name="bDelete" Content="Delete" Margin="1" Command="{Binding DeleteLoanCommand}"/>
                         <Button Name="bSave" Content="Save" Margin="1" Command="{Binding SaveLoanCommand}"/>
-                        <Button Name="bNew" Content="New"  Margin="1" Command="{Binding NewLoanCommand}"/>
+                        <Button Name="bNew" Content="New"  Margin="1" Click="New_Click_Loan"/>
                         <Button Name="bRefresh" Content="Refresh" Margin="1" Command="{Binding LoadLoanCommand}"/>
                     </StackPanel>
                 </Grid>
