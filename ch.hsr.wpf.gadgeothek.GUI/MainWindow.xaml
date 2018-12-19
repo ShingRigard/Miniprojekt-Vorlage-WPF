@@ -61,10 +61,10 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Label Grid.ColumnSpan="2" Content="Gadget Edit" FontStyle="Italic" FontWeight="Bold" />
-                        <Label Grid.Row="1" Content="Name" />
-                        <Label Grid.Row="2" Content="Manufacturer" />
-                        <Label Grid.Row="3" Content="Price" />
-                        <Label Grid.Row="4" Content="Condition" />
+                        <Label Grid.Row="1" Grid.Column="0" Content="Name" />
+                        <Label Grid.Row="2" Grid.Column="0" Content="Manufacturer" />
+                        <Label Grid.Row="3" Grid.Column="0" Content="Price" />
+                        <Label Grid.Row="4" Grid.Column="0" Content="Condition" />
                         <TextBox Grid.Row="1" Grid.Column="1" Margin="3">
                             <TextBox.Text>
                                 <Binding Path="SelectedGadget.Name">
@@ -149,7 +149,7 @@
                     </Grid>
 
                     <!--Details-->
-                    <Grid Grid.Column="1">
+                    <Grid Grid.Row="0" Grid.Column="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30" />
                             <RowDefinition Height="30" />
@@ -163,10 +163,10 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Label Grid.ColumnSpan="2" Content="Client Edit" FontStyle="Italic" FontWeight="Bold" />
-                        <Label Grid.Row="1" Content="Student ID" />
-                        <Label Grid.Row="2" Content="Name" />
-                        <Label Grid.Row="3" Content="E-Mail" />
-                        <Label Grid.Row="4" Content="Password" />
+                        <Label Grid.Row="1" Grid.Column="0" Content="Student ID" />
+                        <Label Grid.Row="2" Grid.Column="0" Content="Name" />
+                        <Label Grid.Row="3" Grid.Column="0" Content="E-Mail" />
+                        <Label Grid.Row="4" Grid.Column="0" Content="Password" />
                         <TextBox Grid.Row="1" Grid.Column="1" MaxLength="20" Margin="3">
                             <TextBox.Text>
                                 <Binding Path="SelectedCustomer.Studentnumber">
@@ -199,7 +199,7 @@
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>
-                        <ScrollViewer Grid.Row="4" Grid.ColumnSpan="2" Margin="5,0,0,0"
+                        <ScrollViewer Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0" Margin="5,0,0,0"
                                       HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                             <TextBlock Text="{Binding ErrorText}" Foreground="Red" />
                         </ScrollViewer>
@@ -257,7 +257,7 @@
                         </DataGrid>
                     </Grid>
                     <!--Details-->
-                    <Grid Grid.Column="1">
+                    <Grid Grid.Row="0" Grid.Column="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30" />
                             <RowDefinition Height="30" />
@@ -272,10 +272,10 @@
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="1" Content="Loan Edit" FontStyle="Italic"
                                FontWeight="Bold" />
-                        <Label Grid.Row="1" Content="From" />
-                        <Label Grid.Row="2" Content="Until" />
-                        <Label Grid.Row="3" Content="Client" />
-                        <Label Grid.Row="4" Content="Gadget" />
+                        <Label Grid.Row="1" Grid.Column="0" Content="From" />
+                        <Label Grid.Row="2" Grid.Column="0" Content="Until" />
+                        <Label Grid.Row="3" Grid.Column="0" Content="Client" />
+                        <Label Grid.Row="4" Grid.Column="0" Content="Gadget" />
                         <DatePicker Grid.Row="1" Grid.Column="1"
                                     SelectedDate="{Binding SelectedLoan.PickupDate, Mode=TwoWay}"
                                     DisplayDateStart="1/1/1900" Margin="3" />
@@ -286,13 +286,13 @@
                                   SelectedValue="{Binding Customer}" SelectedValuePath="Id" Margin="3" />
                         <ComboBox Grid.Row="4" Grid.Column="1" ItemsSource="{Binding Gadgets}"
                                   SelectedValue="{Binding Gadget}" SelectedValuePath="Id" Margin="3" />
-                        <ScrollViewer Grid.Row="5" Grid.ColumnSpan="2" Margin="5,0,0,0"
+                        <ScrollViewer Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" Margin="5,0,0,0"
                                       HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                             <TextBlock Text="{Binding ErrorText}" Foreground="Red" />
                         </ScrollViewer>
                     </Grid>
                     <!--Buttons-->
-                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0">
                         <Button Margin="1" Command="{Binding DeleteLoanCommand}">
                             <Image Source="Views/Images/garbage.png" />
                         </Button>
@@ -311,4 +311,3 @@
         </TabControl>
     </Grid>
 </Window>
-
