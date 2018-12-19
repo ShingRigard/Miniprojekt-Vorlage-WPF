@@ -38,10 +38,10 @@
                       ItemsSource="{Binding Gadgets}" 
                       SelectedItem="{Binding SelectedGadget, Mode=TwoWay}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Name" Binding="{Binding GadgetName}" />
-                                <DataGridTextColumn Header="Manufacturer" Binding="{Binding GadgetManufacturer}" />
-                                <DataGridTextColumn Header="Price" Binding="{Binding GadgetPrice}" />
-                                <DataGridTextColumn Header="Condition" Binding="{Binding GadgetCondition}" />
+                                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                                <DataGridTextColumn Header="Manufacturer" Binding="{Binding Manufacturer}" />
+                                <DataGridTextColumn Header="Price" Binding="{Binding Price}" />
+                                <DataGridTextColumn Header="Condition" Binding="{Binding Condition}" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -128,10 +128,10 @@
                       ItemsSource="{Binding Customers}" 
                       SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Student ID" Binding="{Binding CustomerId}" />
-                                <DataGridTextColumn Header="Name" Binding="{Binding CustomerName}" />
-                                <DataGridTextColumn Header="E-Mail" Binding="{Binding CustomerEmail}" />
-                                <DataGridTextColumn Header="Password" Binding="{Binding CustomerPassword}" />
+                                <DataGridTextColumn Header="Student ID" Binding="{Binding Studentnumber}" />
+                                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                                <DataGridTextColumn Header="E-Mail" Binding="{Binding Email}" />
+                                <DataGridTextColumn Header="Password" Binding="{Binding Password}" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -224,11 +224,11 @@
                       ItemsSource="{Binding Loans}" 
                       SelectedItem="{Binding SelectedLoan, Mode=TwoWay}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="From" Binding="{Binding LoanFrom, StringFormat=\{0:dd.MM.yyyy\}, Mode=TwoWay}"/>
-                                <DataGridTextColumn Header="Until" Binding="{Binding LoanUntil, StringFormat=\{0:dd.MM.yyyy\}, Mode=TwoWay}"/>
-                                <DataGridTextColumn Header="LoanNr" Binding="{Binding LoanId}"/>
+                                <DataGridTextColumn Header="From" Binding="{Binding PickupDate, StringFormat=\{0:dd.MM.yyyy\}, Mode=TwoWay}"/>
+                                <DataGridTextColumn Header="Until" Binding="{Binding ReturnDate, StringFormat=\{0:dd.MM.yyyy\}, Mode=TwoWay}"/>
+                                <DataGridTextColumn Header="LoanNr" Binding="{Binding Id}"/>
                                 <DataGridTextColumn Header="Customer" Binding="{Binding Customer}"/>
-                                <DataGridTextColumn Header="Gadget" Binding="{Binding Gadget.Name}"/>
+                                <DataGridTextColumn Header="Gadget" Binding="{Binding Gadget}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
