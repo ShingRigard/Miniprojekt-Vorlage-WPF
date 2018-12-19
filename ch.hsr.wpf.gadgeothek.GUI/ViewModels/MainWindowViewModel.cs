@@ -9,27 +9,151 @@ using System.Windows.Threading;
 using ch.hsr.wpf.gadgeothek.GUI.Commands;
 using ch.hsr.wpf.gadgeothek.domain;
 using ch.hsr.wpf.gadgeothek.service;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
-        //-----------
         private LibraryAdminService libraryAdminService;
-
-        private ObservableCollection<Gadget> _gadgets;
 
         private DispatcherTimer DispatcherTimer;
 
-        private ICommand _deleteCommand;
-        public ICommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new RelayCommand(DeleteGadget));
+        #region ICommands of Gadget
+        private ICommand _deleteGadgetCommand;
+        public ICommand DeleteGadgetCommand => _deleteGadgetCommand ?? (_deleteGadgetCommand = new RelayCommand(DeleteGadget));
+
+        private ICommand _saveGadgetCommand;
+        public ICommand SaveGadgetCommand => _saveGadgetCommand ?? (_saveGadgetCommand = new RelayCommand(SaveGadget));
+
+        private ICommand _newGadgetCommand;
+        public ICommand NewGadgetCommand => _newGadgetCommand ?? (_newGadgetCommand = new RelayCommand(CreateGadget));
+
+        private ICommand _loadGadgetCommand;
+        public ICommand LoadGadgetCommand => _loadGadgetCommand ?? (_loadGadgetCommand = new RelayCommand(UpdateGadget));
+        #endregion
+        
+        #region ICommands of Customer
+        private ICommand _deleteCustomerCommand;
+        public ICommand DeleteCustomerCommand => _deleteCustomerCommand ?? (_deleteCustomerCommand = new RelayCommand(DeleteCustomer));
+
+        private ICommand _saveCustomerCommand;
+        public ICommand SaveCustomerCommand => _saveCustomerCommand ?? (_saveCustomerCommand = new RelayCommand(SaveCustomer));
+
+        private ICommand _newCustomerCommand;
+        public ICommand NewCustomerCommand => _newCustomerCommand ?? (_newCustomerCommand = new RelayCommand(CreateCustomer));
+
+        private ICommand _loadCustomerCommand;
+        public ICommand LoadCustomerCommand => _loadCustomerCommand ?? (_loadCustomerCommand = new RelayCommand(UpdateCustomer));
+        #endregion
+
+        #region ICommands of Loan
+        private ICommand _deleteLoanCommand;
+        public ICommand DeleteLoanCommand => _deleteLoanCommand ?? (_deleteLoanCommand = new RelayCommand(DeleteLoan));
+
+        private ICommand _saveLoanCommand;
+        public ICommand SaveLoanCommand => _saveLoanCommand ?? (_saveLoanCommand = new RelayCommand(SaveLoan));
+
+        private ICommand _newLoanCommand;
+        public ICommand NewLoanCommand => _newLoanCommand ?? (_newLoanCommand = new RelayCommand(CreateLoan));
+
+        private ICommand _loadLoanCommand;
+        public ICommand LoadLoanCommand => _loadLoanCommand ?? (_loadLoanCommand = new RelayCommand(UpdateLoan));
+        #endregion
+
+        #region Gadget Elements for Binding
+        private ObservableCollection<Gadget> _gadgets;
 
         public ObservableCollection<Gadget> Gadgets
         {
             get => _gadgets;
-            set => SetProperty(ref _gadgets, value, nameof(Gadgets));
+            set => SetProperty(ref _gadgets, value, nameof(_gadgets));
         }
 
+        public Gadget SelectedGadget { get; set; }
+
+        private string _gadgetName;
+
+        public string GadgetName
+        {
+            get => _gadgetName;
+            set => SetProperty(ref _gadgetName, value, nameof(_gadgetName));
+        }
+
+        private double _gadgetPrice;
+
+        public double GadgetPrice
+        {
+            get => _gadgetPrice;
+            set => SetProperty(ref _gadgetPrice, value, nameof(_gadgetPrice));
+        }
+
+        private string _gadgetManufacturer;
+
+        public string GadgetManufacturer
+        {
+            get => _gadgetManufacturer;
+            set => SetProperty(ref _gadgetManufacturer, value, nameof(_gadgetManufacturer));
+        }
+
+        public IList<domain.Condition> Conditions => Enum.GetValues(typeof(domain.Condition)).Cast<domain.Condition>()
+            .ToList<domain.Condition>();
+
+        private domain.Condition _gadgetCondition;
+
+        public domain.Condition GadgetCondition
+        {
+            get => _gadgetCondition;
+            set => SetProperty(ref _gadgetCondition, value, nameof(_gadgetCondition));
+        }
+        #endregion
+
+        #region Customer Elements for Binding
+        private ObservableCollection<Customer> _customers;
+
+        public ObservableCollection<Customer> Customers
+        {
+            get => _customers;
+            set => SetProperty(ref _customers, value, nameof(_customers));
+        }
+
+        public Customer SelectedCustomer { get; set; }
+
+        private string _customerId;
+
+        public string CustomerId
+        {
+            get => _customerId;
+            set => SetProperty(ref _customerId, value, nameof(_customerId));
+        }
+
+        private string _customerName;
+
+        public string CustomerName
+        {
+            get => _customerName;
+            set => SetProperty(ref _customerName, value, nameof(_customerName));
+        }
+
+        private string _customerEmail;
+
+        public string CustomerEmail
+        {
+            get => _customerEmail;
+            set => SetProperty(ref _customerEmail, value, nameof(_customerEmail));
+        }
+        
+        private string _customerPassword;
+
+        public string CustomerPassword
+        {
+            get => _customerPassword;
+            set => SetProperty(ref _customerPassword, value, nameof(_customerPassword));
+        }
+        #endregion
+
+        #region Loan Elements for Binding
         private ObservableCollection<Loan> _loans;
 
         public ObservableCollection<Loan> Loans
@@ -38,7 +162,56 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
             set => SetProperty(ref _loans, value, nameof(Loans));
         }
 
-        public Gadget CurrentGadget { get; set; }
+        public Loan SelectedLoan { get; set; }
+
+        private DateTime? _loanFrom;
+
+        public DateTime? LoanFrom
+        {
+            get => _loanFrom;
+            set => SetProperty(ref _loanFrom, value, nameof(_loanFrom));
+        }
+
+        private DateTime? _loanUntil;
+
+        public DateTime? LoanUntil
+        {
+            get => _loanUntil;
+            set => SetProperty(ref _loanUntil, value, nameof(_loanUntil));
+        }
+
+        private string _loanId;
+
+        public string LoanId
+        {
+            get => _loanId;
+            set => SetProperty(ref _loanId, value, nameof(_loanId));
+        }
+
+        private Customer _customer;
+
+        public Customer Customer
+        {
+            get => _customer;
+            set => SetProperty(ref _customer, value, nameof(_customer));
+        }
+
+        private string _selectedCustomerId;
+
+        public string SelectedCustomerId
+        {
+            get => _selectedCustomerId;
+            set => SetProperty(ref _selectedCustomerId, value, nameof(_selectedCustomerId));
+        }
+
+        private string _selectedGadgetId;
+
+        public string SelectedGadgetId
+        {
+            get => _selectedGadgetId;
+            set => SetProperty(ref _selectedGadgetId, value, nameof(_selectedGadgetId));
+        }
+        #endregion
 
         public MainWindowViewModel()
         {
@@ -46,6 +219,7 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
             libraryAdminService = new LibraryAdminService(serverString);
             var gadgets = libraryAdminService.GetAllGadgets();
             var loans = libraryAdminService.GetAllLoans();
+            var customers = libraryAdminService.GetAllCustomers();
 
             if (gadgets == null)
             {
@@ -62,6 +236,10 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
                     MessageBox.Show("Loans list empty!");
                 else
                     Loans = new ObservableCollection<Loan>(loans);
+                if (customers.Count == 0)
+                    MessageBox.Show("Loans list empty!");
+                else
+                    Customers = new ObservableCollection<Customer>(customers);
             }
 
             DispatcherTimer = new DispatcherTimer();
@@ -74,22 +252,26 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
         {
             var updatedLoans = libraryAdminService.GetAllLoans();
             var updatedGadgets = libraryAdminService.GetAllGadgets();
+            var updatedCustomers = libraryAdminService.GetAllCustomers();
 
-            if (updatedGadgets != null && updatedLoans != null)
+            if (updatedGadgets != null && updatedLoans != null && updatedCustomers != null)
             {
                 Loans.Clear();
                 updatedLoans.ForEach(Loans.Add);
                 Gadgets.Clear();
                 updatedGadgets.ForEach(Gadgets.Add);
+                Customers.Clear();
+                updatedCustomers.ForEach(Customers.Add);
             }
         }
 
+        #region Gadget Functions
         private void DeleteGadget()
         {
-            if (CurrentGadget != null)
+            if (SelectedGadget != null)
             {
                 string sMessageBoxText =
-                    $"Are you sure you want to delete Gadget {CurrentGadget.Name} with ID  {CurrentGadget.InventoryNumber}?";
+                    $"Are you sure you want to delete Gadget {SelectedGadget.Name} with ID  {SelectedGadget.InventoryNumber}?";
                 string sCaption = "Delete";
 
                 MessageBoxButton btnMessageBox = MessageBoxButton.YesNoCancel;
@@ -99,9 +281,9 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
                         MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
                 if (rsltMessageBox == MessageBoxResult.Yes)
                 {
-                    if (CurrentGadget != null && libraryAdminService.DeleteGadget(CurrentGadget))
+                    if (SelectedGadget != null && libraryAdminService.DeleteGadget(SelectedGadget))
                     {
-                        Gadgets.Remove(CurrentGadget);
+                        Gadgets.Remove(SelectedGadget);
                     }
                     else
                     {
@@ -110,5 +292,109 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
                 }
             }
         }
+
+        private void SaveGadget()
+        {
+            //TODO: add logic
+        }
+
+        private void CreateGadget()
+        {
+            //TODO: add logic
+        }
+
+        private void UpdateGadget()
+        {
+            //TODO: add logic
+        }
+        #endregion
+
+        #region Customer Functions
+        private void DeleteCustomer()
+        {
+            if (SelectedCustomer != null)
+            {
+                string sMessageBoxText =
+                    $"Are you sure you want to delete Customer {SelectedCustomer.Name} with ID  {SelectedCustomer.Studentnumber}?";
+                string sCaption = "Delete";
+
+                MessageBoxButton btnMessageBox = MessageBoxButton.YesNoCancel;
+                MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
+
+                MessageBoxResult rsltMessageBox =
+                        MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
+                if (rsltMessageBox == MessageBoxResult.Yes)
+                {
+                    if (SelectedCustomer != null && libraryAdminService.DeleteCustomer(SelectedCustomer))
+                    {
+                        Customers.Remove(SelectedCustomer);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Removing Customer failed!");
+                    }
+                }
+            }
+        }
+
+        private void SaveCustomer()
+        {
+            //TODO: add logic
+        }
+
+        private void CreateCustomer()
+        {
+            //TODO: add logic
+        }
+
+        private void UpdateCustomer()
+        {
+            //TODO: add logic
+        }
+        #endregion
+
+        #region Loan Functions
+        private void DeleteLoan()
+        {
+            if (SelectedLoan != null)
+            {
+                string sMessageBoxText =
+                    $"Are you sure you want to delete Loan of {SelectedLoan.Gadget} rented by {SelectedLoan.Customer} with ID {SelectedLoan.Id}?";
+                string sCaption = "Delete";
+
+                MessageBoxButton btnMessageBox = MessageBoxButton.YesNoCancel;
+                MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
+
+                MessageBoxResult rsltMessageBox =
+                        MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
+                if (rsltMessageBox == MessageBoxResult.Yes)
+                {
+                    if (SelectedCustomer != null && libraryAdminService.DeleteLoan(SelectedLoan))
+                    {
+                        Loans.Remove(SelectedLoan);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Removing Loan failed!");
+                    }
+                }
+            }
+        }
+
+        private void SaveLoan()
+        {
+            //TODO: add logic
+        }
+
+        private void CreateLoan()
+        {
+            //TODO: add logic
+        }
+
+        private void UpdateLoan()
+        {
+            //TODO: add logic
+        }
+        #endregion
     }
 }
