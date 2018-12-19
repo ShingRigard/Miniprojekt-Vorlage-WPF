@@ -77,16 +77,16 @@
                     <!--Buttons-->
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0">
                         <Button Margin="1" Command="{Binding DeleteGadgetCommand}">
-                            <Image Source="Views/Images/garbage.png" />
+                            <Image Source="Images/garbage.png" />
                         </Button>
                         <Button Margin="1" Command="{Binding SaveGadgetCommand}">
-                            <Image Source="Views/Images/save.png" />
+                            <Image Source="Images/save.png" />
                         </Button>
                         <Button Margin="1" Command="{Binding NewGadgetCommand}">
-                            <Image Source="Views/Images/add.png" />
+                            <Image Source="Images/add.png" />
                         </Button>
                         <Button Margin="1" Command="{Binding LoadGadgetCommand}">
-                            <Image Source="Views/Images/refresh.png" />
+                            <Image Source="Images/refresh.png" />
                         </Button>
                     </StackPanel>
                 </Grid>
@@ -156,16 +156,16 @@
                     <!--Buttons-->
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0">
                         <Button Margin="1" Command="{Binding DeleteCustomerCommand}">
-                            <Image Source="Views/Images/garbage.png" />
+                            <Image Source="Images/garbage.png" />
                         </Button>
                         <Button Margin="1" Command="{Binding SaveCustomerCommand}">
-                            <Image Source="Views/Images/save.png" />
+                            <Image Source="Images/save.png" />
                         </Button>
                         <Button Margin="1" Command="{Binding NewCustomerCommand}">
-                            <Image Source="Views/Images/add.png" />
+                            <Image Source="Images/add.png" />
                         </Button>
                         <Button Margin="1" Command="{Binding LoadCustomerCommand}">
-                            <Image Source="Views/Images/refresh.png" />
+                            <Image Source="Images/refresh.png" />
                         </Button>
                     </StackPanel>
                 </Grid>
@@ -243,16 +243,16 @@
                     <!--Buttons-->
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0">
                         <Button Margin="1" Command="{Binding DeleteLoanCommand}">
-                            <Image Source="Views/Images/garbage.png" />
+                            <Image Source="Images/garbage.png" />
                         </Button>
                         <Button Margin="1" Command="{Binding SaveLoanCommand}">
-                            <Image Source="Views/Images/save.png" />
+                            <Image Source="Images/save.png" />
                         </Button>
                         <Button Margin="1" Command="{Binding NewLoanCommand}">
-                            <Image Source="Views/Images/add.png" />
+                            <Image Source="Images/add.png" />
                         </Button>
                         <Button Margin="1" Command="{Binding LoadLoanCommand}">
-                            <Image Source="Views/Images/refresh.png" />
+                            <Image Source="Images/refresh.png" />
                         </Button>
                     </StackPanel>
                 </Grid>
