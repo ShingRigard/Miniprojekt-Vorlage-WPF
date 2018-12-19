@@ -73,40 +73,8 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
 
         public Gadget SelectedGadget { get; set; }
 
-        private string _gadgetName;
-
-        public string GadgetName
-        {
-            get => _gadgetName;
-            set => SetProperty(ref _gadgetName, value, nameof(_gadgetName));
-        }
-
-        private double _gadgetPrice;
-
-        public double GadgetPrice
-        {
-            get => _gadgetPrice;
-            set => SetProperty(ref _gadgetPrice, value, nameof(_gadgetPrice));
-        }
-
-        private string _gadgetManufacturer;
-
-        public string GadgetManufacturer
-        {
-            get => _gadgetManufacturer;
-            set => SetProperty(ref _gadgetManufacturer, value, nameof(_gadgetManufacturer));
-        }
-
         public IList<domain.Condition> Conditions => Enum.GetValues(typeof(domain.Condition)).Cast<domain.Condition>()
-            .ToList<domain.Condition>();
-
-        private domain.Condition _gadgetCondition;
-
-        public domain.Condition GadgetCondition
-        {
-            get => _gadgetCondition;
-            set => SetProperty(ref _gadgetCondition, value, nameof(_gadgetCondition));
-        }
+            .ToList<domain.Condition>();       
         #endregion
 
         #region Customer Elements for Binding
@@ -119,38 +87,6 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
         }
 
         public Customer SelectedCustomer { get; set; }
-
-        private string _customerId;
-
-        public string CustomerId
-        {
-            get => _customerId;
-            set => SetProperty(ref _customerId, value, nameof(_customerId));
-        }
-
-        private string _customerName;
-
-        public string CustomerName
-        {
-            get => _customerName;
-            set => SetProperty(ref _customerName, value, nameof(_customerName));
-        }
-
-        private string _customerEmail;
-
-        public string CustomerEmail
-        {
-            get => _customerEmail;
-            set => SetProperty(ref _customerEmail, value, nameof(_customerEmail));
-        }
-        
-        private string _customerPassword;
-
-        public string CustomerPassword
-        {
-            get => _customerPassword;
-            set => SetProperty(ref _customerPassword, value, nameof(_customerPassword));
-        }
         #endregion
 
         #region Loan Elements for Binding
@@ -159,58 +95,10 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
         public ObservableCollection<Loan> Loans
         {
             get => _loans;
-            set => SetProperty(ref _loans, value, nameof(Loans));
+            set => SetProperty(ref _loans, value, nameof(_loans));
         }
 
         public Loan SelectedLoan { get; set; }
-
-        private DateTime? _loanFrom;
-
-        public DateTime? LoanFrom
-        {
-            get => _loanFrom;
-            set => SetProperty(ref _loanFrom, value, nameof(_loanFrom));
-        }
-
-        private DateTime? _loanUntil;
-
-        public DateTime? LoanUntil
-        {
-            get => _loanUntil;
-            set => SetProperty(ref _loanUntil, value, nameof(_loanUntil));
-        }
-
-        private string _loanId;
-
-        public string LoanId
-        {
-            get => _loanId;
-            set => SetProperty(ref _loanId, value, nameof(_loanId));
-        }
-
-        private Customer _customer;
-
-        public Customer Customer
-        {
-            get => _customer;
-            set => SetProperty(ref _customer, value, nameof(_customer));
-        }
-
-        private string _selectedCustomerId;
-
-        public string SelectedCustomerId
-        {
-            get => _selectedCustomerId;
-            set => SetProperty(ref _selectedCustomerId, value, nameof(_selectedCustomerId));
-        }
-
-        private string _selectedGadgetId;
-
-        public string SelectedGadgetId
-        {
-            get => _selectedGadgetId;
-            set => SetProperty(ref _selectedGadgetId, value, nameof(_selectedGadgetId));
-        }
         #endregion
 
         public MainWindowViewModel()
