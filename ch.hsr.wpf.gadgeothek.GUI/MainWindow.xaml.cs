@@ -20,9 +20,13 @@ namespace ch.hsr.wpf.gadgeothek.GUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        public MainWindowViewModel AppVm { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+            AppVm = new MainWindowViewModel();
+            DataContext = AppVm;
         }
     }
 }

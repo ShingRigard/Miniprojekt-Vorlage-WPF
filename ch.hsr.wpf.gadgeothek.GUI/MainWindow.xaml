@@ -30,7 +30,7 @@
                             <RowDefinition Height="30" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Label Grid.ColumnSpan="2" Content="Car-List" FontStyle="Italic" FontWeight="Bold" />
+                        <Label Grid.ColumnSpan="2" Content="Gadget-List" FontStyle="Italic" FontWeight="Bold" />
                         <DataGrid Grid.Row="1"
                       Name="CarDataGrid" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False"
                       SelectionMode="Single" IsReadOnly="True" GridLinesVisibility="None" SelectionUnit="FullRow"
@@ -66,7 +66,7 @@
                         <Label Grid.Row="4" Content="Condition" />
                         <TextBox Grid.Row="1" Grid.Column="1" Margin="3">
                             <TextBox.Text>
-                                <Binding Path="SelectedGadget.GadgetName">
+                                <Binding Path="SelectedGadget.Name">
                                     <Binding.ValidationRules>
                                     </Binding.ValidationRules>
                                 </Binding>
@@ -74,7 +74,7 @@
                         </TextBox>
                         <TextBox Grid.Row="2" Grid.Column="1" MaxLength="20" Margin="3">
                             <TextBox.Text>
-                                <Binding Path="SelectedGadget.GadgetManufacturer">
+                                <Binding Path="SelectedGadget.Manufacturer">
                                     <Binding.ValidationRules>
                                     </Binding.ValidationRules>
                                 </Binding>
@@ -82,7 +82,7 @@
                         </TextBox>
                         <TextBox Grid.Row="3" Grid.Column="1" Margin="3">
                             <TextBox.Text>
-                                <Binding Path="SelectedGadget.GadgetPrice">
+                                <Binding Path="SelectedGadget.Price">
                                     <Binding.ValidationRules>
                                     </Binding.ValidationRules>
                                 </Binding>
@@ -97,7 +97,7 @@
                     </Grid>
                     <!--Buttons-->
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
-                        <Button Content="Delete" Margin="1" Command="{Binding DeleteCommand}" />
+                        <Button Content="Delete" Margin="1" Command="{Binding DeleteGadgetCommand}" />
                         <Button Content="Save" Margin="1" Command="{Binding SaveGadgetCommand}"/>
                         <Button Content="New" Margin="1" Command="{Binding NewGadgetCommand}"/>
                         <Button Content="Refresh" Margin="1" Command="{Binding LoadGadgetCommand}"/>
@@ -157,7 +157,7 @@
                         <Label Grid.Row="4" Content="Password" />
                         <TextBox Grid.Row="1" Grid.Column="1" MaxLength="20" Margin="3">
                             <TextBox.Text>
-                                <Binding Path="SelectedCustomer.CustomerId">
+                                <Binding Path="SelectedCustomer.Studentnumber">
                                     <Binding.ValidationRules>
                                     </Binding.ValidationRules>
                                 </Binding>
@@ -165,7 +165,7 @@
                         </TextBox>
                         <TextBox Grid.Row="2" Grid.Column="1" MaxLength="20"  Margin="3">
                             <TextBox.Text>
-                                <Binding Path="SelectedCustomer.CustomerName">
+                                <Binding Path="SelectedCustomer.Name">
                                     <Binding.ValidationRules>
                                     </Binding.ValidationRules>
                                 </Binding>
@@ -173,7 +173,7 @@
                         </TextBox>
                         <TextBox Grid.Row="3" Grid.Column="1" Margin="3">
                             <TextBox.Text>
-                                <Binding Path="SelectedCustomer.CustomerEmail">
+                                <Binding Path="SelectedCustomer.Email">
                                     <Binding.ValidationRules>
                                     </Binding.ValidationRules>
                                 </Binding>
@@ -181,7 +181,7 @@
                         </TextBox>
                         <TextBox Grid.Row="4" Grid.Column="1" Margin="3">
                             <TextBox.Text>
-                                <Binding Path="SelectedCustomer.CustomerPassword">
+                                <Binding Path="SelectedCustomer.Password">
                                     <Binding.ValidationRules>
                                     </Binding.ValidationRules>
                                 </Binding>
@@ -193,14 +193,14 @@
                     </Grid>
                     <!--Buttons-->
                     <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2">
-                        <Button Content="Delete" Margin="1" Command="{Binding DeleteCommand}" />
+                        <Button Content="Delete" Margin="1" Command="{Binding DeleteCustomerCommand}" />
                         <Button Content="Save" Margin="1" Command="{Binding SaveCustomerCommand}"/>
                         <Button Content="New" Margin="1" Command="{Binding NewCustomerCommand}"/>
                         <Button Content="Refresh" Margin="1" Command="{Binding LoadCustomerCommand}"/>
                     </StackPanel>
                 </Grid>
             </TabItem>
-            <TabItem Header="Reservation">
+            <TabItem Header="Loan">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -216,19 +216,19 @@
                             <RowDefinition Height="30" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Label Content="Reservation-List" FontStyle="Italic" FontWeight="Bold"/>
+                        <Label Content="Loan-List" FontStyle="Italic" FontWeight="Bold"/>
                         <DataGrid Grid.Row="1"
-                      Name="ReservationDataGrid" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False"
+                      Name="LoanDataGrid" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False"
                       SelectionMode="Single" IsReadOnly="True" GridLinesVisibility="None" SelectionUnit="FullRow"
                       CanUserResizeRows="False"
-                      ItemsSource="{Binding Reservations}" 
-                      SelectedItem="{Binding SelectedReservation, Mode=TwoWay}">
+                      ItemsSource="{Binding Loans}" 
+                      SelectedItem="{Binding SelectedLoan, Mode=TwoWay}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="From" Binding="{Binding ReservationFrom, StringFormat=\{0:dd.MM.yyyy\}, Mode=TwoWay}"/>
-                                <DataGridTextColumn Header="Until" Binding="{Binding ReservationUntil, StringFormat=\{0:dd.MM.yyyy\}, Mode=TwoWay}"/>
-                                <DataGridTextColumn Header="ReservationNr" Binding="{Binding ReservationId}"/>
+                                <DataGridTextColumn Header="From" Binding="{Binding LoanFrom, StringFormat=\{0:dd.MM.yyyy\}, Mode=TwoWay}"/>
+                                <DataGridTextColumn Header="Until" Binding="{Binding LoanUntil, StringFormat=\{0:dd.MM.yyyy\}, Mode=TwoWay}"/>
+                                <DataGridTextColumn Header="LoanNr" Binding="{Binding LoanId}"/>
                                 <DataGridTextColumn Header="Customer" Binding="{Binding Customer}"/>
-                                <DataGridTextColumn Header="Gadget" Binding="{Binding Gadget.GadgetName}"/>
+                                <DataGridTextColumn Header="Gadget" Binding="{Binding Gadget.Name}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -246,13 +246,13 @@
                             <ColumnDefinition Width="70" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="2" Grid.ColumnSpan="2" Content="Reservation Edit" FontStyle="Italic" FontWeight="Bold" />
+                        <Label Grid.Column="2" Grid.ColumnSpan="2" Content="Loan Edit" FontStyle="Italic" FontWeight="Bold" />
                         <Label Grid.Row="1" Content="From" />
                         <Label Grid.Row="2" Content="Until" />
                         <Label Grid.Row="3" Content="Client" />
-                        <Label Grid.Row="4" Content="Car" />
-                        <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding SelectedReservation.Von, Mode=TwoWay}" DisplayDateStart="1/1/1900" Margin="3"/>
-                        <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding SelectedReservation.Bis, Mode=TwoWay}" DisplayDateStart="1/1/1900" Margin="3"/>
+                        <Label Grid.Row="4" Content="Gadget" />
+                        <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding SelectedLoan.PickupDate, Mode=TwoWay}" DisplayDateStart="1/1/1900" Margin="3"/>
+                        <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding SelectedLoan.ReturnDate, Mode=TwoWay}" DisplayDateStart="1/1/1900" Margin="3"/>
                         <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Customer}" SelectedValue="{Binding SelectedCustomerId}" SelectedValuePath="Id" Margin="3">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
@@ -275,10 +275,10 @@
                     </Grid>
                     <!--Buttons-->
                     <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2">
-                        <Button Name="bDelete" Content="Delete" Margin="1" Command="{Binding DeleteCommand}"/>
-                        <Button Name="bSave" Content="Save" Margin="1" Command="{Binding SaveReservationCommand}"/>
-                        <Button Name="bNew" Content="New"  Margin="1" Command="{Binding NewReservationCommand}"/>
-                        <Button Name="bRefresh" Content="Refresh" Margin="1" Command="{Binding LoadReservationCommand}"/>
+                        <Button Name="bDelete" Content="Delete" Margin="1" Command="{Binding DeleteLoanCommand}"/>
+                        <Button Name="bSave" Content="Save" Margin="1" Command="{Binding SaveLoanCommand}"/>
+                        <Button Name="bNew" Content="New"  Margin="1" Command="{Binding NewLoanCommand}"/>
+                        <Button Name="bRefresh" Content="Refresh" Margin="1" Command="{Binding LoadLoanCommand}"/>
                     </StackPanel>
                 </Grid>
             </TabItem>
