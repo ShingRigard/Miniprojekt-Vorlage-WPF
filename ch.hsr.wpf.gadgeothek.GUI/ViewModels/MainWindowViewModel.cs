@@ -256,12 +256,66 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
 
             if (updatedGadgets != null && updatedLoans != null && updatedCustomers != null)
             {
-                Loans.Clear();
-                updatedLoans.ForEach(Loans.Add);
-                Gadgets.Clear();
-                updatedGadgets.ForEach(Gadgets.Add);
-                Customers.Clear();
-                updatedCustomers.ForEach(Customers.Add);
+                if (SelectedLoan == null)
+                {
+                    Loans.Clear();
+                }
+                else if (SelectedLoan != null)
+                {
+                    List<Loan> LoanList = Loans.ToList();
+                    foreach(Loan loanItem in LoanList)
+                    {
+                        if (!loanItem.Equals(SelectedLoan))
+                        {
+                            Loans.Remove(loanItem);
+                        }
+                    }
+                }
+                foreach(Loan loanItem in updatedLoans)
+                {
+                    if(!loanItem.Equals(SelectedLoan))
+                    Loans.Add(loanItem);
+                }
+                if (SelectedGadget == null)
+                {
+                    Gadgets.Clear();
+                }
+                else if (SelectedGadget != null)
+                {
+                    List<Gadget> GadgetList = Gadgets.ToList();
+                    foreach (Gadget GadgetItem in GadgetList)
+                    {
+                        if (!GadgetItem.Equals(SelectedGadget))
+                        {
+                            Gadgets.Remove(GadgetItem);
+                        }
+                    }
+                }
+                foreach (Gadget GadgetItem in updatedGadgets)
+                {
+                    if (!GadgetItem.Equals(SelectedGadget))
+                        Gadgets.Add(GadgetItem);
+                }
+                if (SelectedCustomer == null)
+                {
+                    Customers.Clear();
+                }
+                else if (SelectedCustomer != null)
+                {
+                    List<Customer> CustomerList = Customers.ToList();
+                    foreach (Customer CustomerItem in CustomerList)
+                    {
+                        if (!CustomerItem.Equals(SelectedCustomer))
+                        {
+                            Customers.Remove(CustomerItem);
+                        }
+                    }
+                }
+                foreach (Customer CustomerItem in updatedCustomers)
+                {
+                    if (!CustomerItem.Equals(SelectedCustomer))
+                        Customers.Add(CustomerItem);
+                }
             }
         }
 
@@ -295,17 +349,25 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
 
         private void SaveGadget()
         {
-            //TODO: add logic
+            if(SelectedGadget != null)
+            {
+                if(!libraryAdminService.UpdateGadget(SelectedGadget))
+                {
+                    libraryAdminService.AddGadget(SelectedGadget);
+                }
+            }
         }
 
         private void CreateGadget()
         {
-            //TODO: add logic
+            Gadgets.Add(new Gadget("new"));
         }
 
         private void UpdateGadget()
         {
-            //TODO: add logic
+            Gadgets.Clear();
+            libraryAdminService.GetAllGadgets().ForEach(Gadgets.Add);
+            SelectedGadget = Gadgets.FirstOrDefault();
         }
         #endregion
 
@@ -339,17 +401,25 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
 
         private void SaveCustomer()
         {
-            //TODO: add logic
+            if (SelectedCustomer != null)
+            {
+                if (!libraryAdminService.UpdateCustomer(SelectedCustomer))
+                {
+                    libraryAdminService.AddCustomer(SelectedCustomer);
+                }
+            }
         }
 
         private void CreateCustomer()
         {
-            //TODO: add logic
+            Customers.Add(new Customer("new", "password", "new@mail.com", "1565"));
         }
 
         private void UpdateCustomer()
         {
-            //TODO: add logic
+            Customers.Clear();
+            libraryAdminService.GetAllCustomers().ForEach(Customers.Add);
+            SelectedCustomer = Customers.FirstOrDefault();
         }
         #endregion
 
@@ -383,17 +453,25 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
 
         private void SaveLoan()
         {
-            //TODO: add logic
+            if (SelectedLoan != null)
+            {
+                if (!libraryAdminService.UpdateLoan(SelectedLoan))
+                {
+                    libraryAdminService.AddLoan(SelectedLoan);
+                }
+            }
         }
 
         private void CreateLoan()
         {
-            //TODO: add logic
+            Loans.Add(new Loan("568", new Gadget(), new Customer(), new DateTime(), new DateTime()));
         }
 
         private void UpdateLoan()
         {
-            //TODO: add logic
+            Loans.Clear();
+            libraryAdminService.GetAllLoans().ForEach(Loans.Add);
+            SelectedLoan = Loans.FirstOrDefault();
         }
         #endregion
     }

@@ -32,12 +32,11 @@
                         </Grid.RowDefinitions>
                         <Label Grid.ColumnSpan="2" Content="Gadget-List" FontStyle="Italic" FontWeight="Bold" />
                         <DataGrid Grid.Row="1"
-                                  Name="CarDataGrid" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False"
-                                  SelectionMode="Single" IsReadOnly="True" GridLinesVisibility="None"
-                                  SelectionUnit="FullRow"
-                                  CanUserResizeRows="False"
-                                  ItemsSource="{Binding Gadgets}"
-                                  SelectedItem="{Binding SelectedGadget, Mode=TwoWay}">
+                      Name="GadgetDataGrid" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False"
+                      SelectionMode="Single" IsReadOnly="True" GridLinesVisibility="None" SelectionUnit="FullRow"
+                      CanUserResizeRows="False"
+                      ItemsSource="{Binding Gadgets}" 
+                      SelectedItem="{Binding SelectedGadget, Mode=TwoWay}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                                 <DataGridTextColumn Header="Manufacturer" Binding="{Binding Manufacturer}" />
@@ -61,40 +60,19 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Label Grid.ColumnSpan="2" Content="Gadget Edit" FontStyle="Italic" FontWeight="Bold" />
-                        <Label Grid.Row="1" Grid.Column="0" Content="Name" />
-                        <Label Grid.Row="2" Grid.Column="0" Content="Manufacturer" />
-                        <Label Grid.Row="3" Grid.Column="0" Content="Price" />
-                        <Label Grid.Row="4" Grid.Column="0" Content="Condition" />
-                        <TextBox Grid.Row="1" Grid.Column="1" Margin="3">
-                            <TextBox.Text>
-                                <Binding Path="SelectedGadget.Name">
-                                    <Binding.ValidationRules>
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </TextBox.Text>
-                        </TextBox>
-                        <TextBox Grid.Row="2" Grid.Column="1" MaxLength="20" Margin="3">
-                            <TextBox.Text>
-                                <Binding Path="SelectedGadget.Manufacturer">
-                                    <Binding.ValidationRules>
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </TextBox.Text>
-                        </TextBox>
-                        <TextBox Grid.Row="3" Grid.Column="1" Margin="3">
-                            <TextBox.Text>
-                                <Binding Path="SelectedGadget.Price">
-                                    <Binding.ValidationRules>
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </TextBox.Text>
-                        </TextBox>
-                        <ComboBox Grid.Row="4" Grid.Column="1" Margin="3"
-                                  ItemsSource="{Binding Conditions}"
-                                  SelectedIndex="{Binding Condition, Mode=TwoWay}" />
-                        <ScrollViewer Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" Margin="5,0,0,0"
-                                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                            <TextBlock Text="{Binding ErrorText}" Foreground="Red" />
+                        <Label Grid.Row="1" Content="Name" />
+                        <Label Grid.Row="2" Content="Manufacturer" />
+                        <Label Grid.Row="3" Content="Price" />
+                        <Label Grid.Row="4" Content="Condition" />
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Text="{Binding SelectedItem.Name, ElementName=GadgetDataGrid}" />
+                        <TextBox Grid.Row="2" Grid.Column="1" MaxLength="20" Margin="3" Text="{Binding SelectedItem.Manufacturer, ElementName=GadgetDataGrid}" />
+                        <TextBox Grid.Row="3" Grid.Column="1" Margin="3" Text="{Binding SelectedItem.Price, ElementName=GadgetDataGrid}" />
+                        <!-- TODO Fix Binding for selected Item for it to show up when selecting an item-->
+                        <ComboBox Grid.Row="4" Grid.Column="1" Name="ComboBoxCarType" Margin="3"
+                      ItemsSource="{Binding Conditions}"
+                      SelectedIndex="{Binding SelectedItem.Condition, ElementName=GadgetDataGrid}" />
+                        <ScrollViewer Grid.Row="5" Grid.ColumnSpan="2" Margin="5,0,0,0" HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto">
+                            <TextBlock Text="{Binding ErrorText}" Foreground="Red"/>
                         </ScrollViewer>
                     </Grid>
                     <!--Buttons-->
@@ -163,10 +141,11 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Label Grid.ColumnSpan="2" Content="Client Edit" FontStyle="Italic" FontWeight="Bold" />
-                        <Label Grid.Row="1" Grid.Column="0" Content="Student ID" />
-                        <Label Grid.Row="2" Grid.Column="0" Content="Name" />
-                        <Label Grid.Row="3" Grid.Column="0" Content="E-Mail" />
-                        <Label Grid.Row="4" Grid.Column="0" Content="Password" />
+                        <Label Grid.Row="1" Content="Student ID" />
+                        <Label Grid.Row="2" Content="Name" />
+                        <Label Grid.Row="3" Content="E-Mail" />
+                        <Label Grid.Row="4" Content="Password" />
+                        <!-- TODO refine all TextBoxes with the bindings according to the Gadget Tab-->
                         <TextBox Grid.Row="1" Grid.Column="1" MaxLength="20" Margin="3">
                             <TextBox.Text>
                                 <Binding Path="SelectedCustomer.Studentnumber">
@@ -276,6 +255,7 @@
                         <Label Grid.Row="2" Grid.Column="0" Content="Until" />
                         <Label Grid.Row="3" Grid.Column="0" Content="Client" />
                         <Label Grid.Row="4" Grid.Column="0" Content="Gadget" />
+                        <!-- TODO Fix Binding to work for when you select an item in the list-->
                         <DatePicker Grid.Row="1" Grid.Column="1"
                                     SelectedDate="{Binding SelectedLoan.PickupDate, Mode=TwoWay}"
                                     DisplayDateStart="1/1/1900" Margin="3" />
