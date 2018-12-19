@@ -13,7 +13,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <TabControl Name="MainWindowTabControl" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5">
+        <TabControl Name="MainWindowTabControl" Grid.Column="0" Grid.Row="0">
             <TabItem Header="Gadget">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -76,11 +76,19 @@
                         </ScrollViewer>
                     </Grid>
                     <!--Buttons-->
-                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
-                        <Button Content="Delete" Margin="1" Command="{Binding DeleteGadgetCommand}" />
-                        <Button Content="Save" Margin="1" Command="{Binding SaveGadgetCommand}"/>
-                        <Button Content="New" Margin="1"  Click="New_Click_Gadget"/>
-                        <Button Content="Refresh" Margin="1" Command="{Binding LoadGadgetCommand}"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0">
+                        <Button Margin="1" Command="{Binding DeleteGadgetCommand}">
+                            <Image Source="Views/Images/garbage.png" />
+                        </Button>
+                        <Button Margin="1" Command="{Binding SaveGadgetCommand}">
+                            <Image Source="Views/Images/save.png" />
+                        </Button>
+                        <Button Margin="1" Command="{Binding NewGadgetCommand}">
+                            <Image Source="Views/Images/add.png" />
+                        </Button>
+                        <Button Margin="1" Command="{Binding LoadGadgetCommand}">
+                            <Image Source="Views/Images/refresh.png" />
+                        </Button>
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -102,11 +110,13 @@
                         </Grid.RowDefinitions>
                         <Label Grid.ColumnSpan="2" Content="Client-List" FontStyle="Italic" FontWeight="Bold" />
                         <DataGrid Grid.Row="1"
-                      Name="CustomerDataGrid" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False"
-                      SelectionMode="Single" IsReadOnly="True" GridLinesVisibility="None" SelectionUnit="FullRow"
-                      CanUserResizeRows="False"
-                      ItemsSource="{Binding Customers}" 
-                      SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}">
+                                  Name="ClientDataGrid" IsSynchronizedWithCurrentItem="True"
+                                  AutoGenerateColumns="False"
+                                  SelectionMode="Single" IsReadOnly="True" GridLinesVisibility="None"
+                                  SelectionUnit="FullRow"
+                                  CanUserResizeRows="False"
+                                  ItemsSource="{Binding Customers}"
+                                  SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Student ID" Binding="{Binding Studentnumber}" />
                                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
@@ -117,7 +127,7 @@
                     </Grid>
 
                     <!--Details-->
-                    <Grid Grid.Column="1">
+                    <Grid Grid.Row="0" Grid.Column="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30" />
                             <RowDefinition Height="30" />
@@ -144,7 +154,7 @@
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>
-                        <TextBox Grid.Row="2" Grid.Column="1" MaxLength="20"  Margin="3">
+                        <TextBox Grid.Row="2" Grid.Column="1" MaxLength="20" Margin="3">
                             <TextBox.Text>
                                 <Binding Path="SelectedCustomer.Name">
                                     <Binding.ValidationRules>
@@ -168,16 +178,25 @@
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>
-                        <ScrollViewer Grid.Row="4" Grid.ColumnSpan="2" Margin="5,0,0,0" HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto">
-                            <TextBlock Text="{Binding ErrorText}" Foreground="Red"/>
+                        <ScrollViewer Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0" Margin="5,0,0,0"
+                                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                            <TextBlock Text="{Binding ErrorText}" Foreground="Red" />
                         </ScrollViewer>
                     </Grid>
                     <!--Buttons-->
-                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2">
-                        <Button Content="Delete" Margin="1" Command="{Binding DeleteCustomerCommand}" />
-                        <Button Content="Save" Margin="1" Command="{Binding SaveCustomerCommand}"/>
-                        <Button Content="New" Margin="1" Click="New_Click_Customer"/>
-                        <Button Content="Refresh" Margin="1" Command="{Binding LoadCustomerCommand}"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0">
+                        <Button Margin="1" Command="{Binding DeleteCustomerCommand}">
+                            <Image Source="Views/Images/garbage.png" />
+                        </Button>
+                        <Button Margin="1" Command="{Binding SaveCustomerCommand}">
+                            <Image Source="Views/Images/save.png" />
+                        </Button>
+                        <Button Margin="1" Command="{Binding NewCustomerCommand}">
+                            <Image Source="Views/Images/add.png" />
+                        </Button>
+                        <Button Margin="1" Command="{Binding LoadCustomerCommand}">
+                            <Image Source="Views/Images/refresh.png" />
+                        </Button>
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -197,24 +216,27 @@
                             <RowDefinition Height="30" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Label Content="Loan-List" FontStyle="Italic" FontWeight="Bold"/>
+                        <Label Content="Loan-List" FontStyle="Italic" FontWeight="Bold" />
                         <DataGrid Grid.Row="1"
-                      Name="LoanDataGrid" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False"
-                      SelectionMode="Single" IsReadOnly="True" GridLinesVisibility="None" SelectionUnit="FullRow"
-                      CanUserResizeRows="False"
-                      ItemsSource="{Binding Loans}" 
-                      SelectedItem="{Binding SelectedLoan, Mode=TwoWay}">
+                                  Name="LoanDataGrid" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False"
+                                  SelectionMode="Single" IsReadOnly="True" GridLinesVisibility="None"
+                                  SelectionUnit="FullRow"
+                                  CanUserResizeRows="False"
+                                  ItemsSource="{Binding Loans}"
+                                  SelectedItem="{Binding SelectedLoan, Mode=TwoWay}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="From" Binding="{Binding PickupDate, StringFormat=\{0:dd.MM.yyyy\}, Mode=TwoWay}"/>
-                                <DataGridTextColumn Header="Until" Binding="{Binding ReturnDate, StringFormat=\{0:dd.MM.yyyy\}, Mode=TwoWay}"/>
-                                <DataGridTextColumn Header="LoanNr" Binding="{Binding Id}"/>
-                                <DataGridTextColumn Header="Customer" Binding="{Binding Customer}"/>
-                                <DataGridTextColumn Header="Gadget" Binding="{Binding Gadget}"/>
+                                <DataGridTextColumn Header="From"
+                                                    Binding="{Binding PickupDate, StringFormat=\{0:dd.MM.yyyy\}, Mode=TwoWay}" />
+                                <DataGridTextColumn Header="Until"
+                                                    Binding="{Binding ReturnDate, StringFormat=\{0:dd.MM.yyyy\}, Mode=TwoWay}" />
+                                <DataGridTextColumn Header="LoanNr" Binding="{Binding Id}" />
+                                <DataGridTextColumn Header="Customer" Binding="{Binding Customer}" />
+                                <DataGridTextColumn Header="Gadget" Binding="{Binding Gadget}" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
                     <!--Details-->
-                    <Grid Grid.Column="1">
+                    <Grid Grid.Row="0" Grid.Column="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30" />
                             <RowDefinition Height="30" />
@@ -227,40 +249,42 @@
                             <ColumnDefinition Width="70" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="2" Grid.ColumnSpan="2" Content="Loan Edit" FontStyle="Italic" FontWeight="Bold" />
-                        <Label Grid.Row="1" Content="From" />
-                        <Label Grid.Row="2" Content="Until" />
-                        <Label Grid.Row="3" Content="Client" />
-                        <Label Grid.Row="4" Content="Gadget" />
+                        <Label Grid.Column="1" Content="Loan Edit" FontStyle="Italic"
+                               FontWeight="Bold" />
+                        <Label Grid.Row="1" Grid.Column="0" Content="From" />
+                        <Label Grid.Row="2" Grid.Column="0" Content="Until" />
+                        <Label Grid.Row="3" Grid.Column="0" Content="Client" />
+                        <Label Grid.Row="4" Grid.Column="0" Content="Gadget" />
                         <!-- TODO Fix Binding to work for when you select an item in the list-->
-                        <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding SelectedLoan.PickupDate, Mode=TwoWay}" DisplayDateStart="1/1/1900" Margin="3"/>
-                        <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding SelectedLoan.ReturnDate, Mode=TwoWay}" DisplayDateStart="1/1/1900" Margin="3"/>
-                        <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Customer}" SelectedValue="{Binding SelectedCustomerId}" SelectedValuePath="Id" Margin="3">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="[" />
-                                        <TextBlock Text="{Binding CustomerId}" />
-                                        <TextBlock Text="] " />
-                                        <TextBlock Text="{Binding CustomerName}" />
-                                        <TextBlock Text=" \&lt;" />
-                                        <TextBlock Text="{Binding CustomerEmail}" />
-                                        <TextBlock Text=">" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ComboBox Grid.Row="4" Grid.Column="1" ItemsSource="{Binding Gadgets}" SelectedValue="{Binding SelectedGadgetId}" SelectedValuePath="Id" DisplayMemberPath="Marke" Margin="3" />
-                        <ScrollViewer Grid.Row="5" Grid.ColumnSpan="2" Margin="5,0,0,0" HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto">
-                            <TextBlock Text="{Binding ErrorText}" Foreground="Red"/>
+                        <DatePicker Grid.Row="1" Grid.Column="1"
+                                    SelectedDate="{Binding SelectedLoan.PickupDate, Mode=TwoWay}"
+                                    DisplayDateStart="1/1/1900" Margin="3" />
+                        <DatePicker Grid.Row="2" Grid.Column="1"
+                                    SelectedDate="{Binding SelectedLoan.ReturnDate, Mode=TwoWay}"
+                                    DisplayDateStart="1/1/1900" Margin="3" />
+                        <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Customers}"
+                                  SelectedValue="{Binding Customer}" SelectedValuePath="Id" Margin="3" />
+                        <ComboBox Grid.Row="4" Grid.Column="1" ItemsSource="{Binding Gadgets}"
+                                  SelectedValue="{Binding Gadget}" SelectedValuePath="Id" Margin="3" />
+                        <ScrollViewer Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" Margin="5,0,0,0"
+                                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                            <TextBlock Text="{Binding ErrorText}" Foreground="Red" />
                         </ScrollViewer>
                     </Grid>
                     <!--Buttons-->
-                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2">
-                        <Button Name="bDelete" Content="Delete" Margin="1" Command="{Binding DeleteLoanCommand}"/>
-                        <Button Name="bSave" Content="Save" Margin="1" Command="{Binding SaveLoanCommand}"/>
-                        <Button Name="bNew" Content="New"  Margin="1" Click="New_Click_Loan"/>
-                        <Button Name="bRefresh" Content="Refresh" Margin="1" Command="{Binding LoadLoanCommand}"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0">
+                        <Button Margin="1" Command="{Binding DeleteLoanCommand}">
+                            <Image Source="Views/Images/garbage.png" />
+                        </Button>
+                        <Button Margin="1" Command="{Binding SaveLoanCommand}">
+                            <Image Source="Views/Images/save.png" />
+                        </Button>
+                        <Button Margin="1" Command="{Binding NewLoanCommand}">
+                            <Image Source="Views/Images/add.png" />
+                        </Button>
+                        <Button Margin="1" Command="{Binding LoadLoanCommand}">
+                            <Image Source="Views/Images/refresh.png" />
+                        </Button>
                     </StackPanel>
                 </Grid>
             </TabItem>
