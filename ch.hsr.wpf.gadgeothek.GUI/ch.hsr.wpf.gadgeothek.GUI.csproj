@@ -60,8 +60,6 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Validation\DateValidationRule.cs" />
-    <Compile Include="Validation\NumberValidationRule.cs" />
     <Compile Include="Validation\StringValidationRule.cs" />
     <Compile Include="ViewModels\BindableBase.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />

@@ -1,5 +1,5 @@
-﻿using System.Globalization;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
+using System.Globalization;
 
 namespace ch.hsr.wpf.gadgeothek.GUI.Validation
 {
@@ -21,8 +21,7 @@ namespace ch.hsr.wpf.gadgeothek.GUI.Validation
             {
                 return new ValidationResult(false, "Value is not a string");
             }
-
-            str = (string) value;
+            str = (string)value;
 
             if (!CanBeEmpty && str.Length == 0)
             {
