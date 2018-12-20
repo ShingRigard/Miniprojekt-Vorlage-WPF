@@ -61,22 +61,22 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Label Grid.ColumnSpan="2" Content="Gadget Edit" FontStyle="Italic" FontWeight="Bold" />
-                        <Label Grid.Row="1" Content="Name" />
-                        <Label Grid.Row="2" Content="Manufacturer" />
-                        <Label Grid.Row="3" Content="Price" />
-                        <Label Grid.Row="4" Content="Condition" />
+                        <Label Grid.Row="1" Grid.Column="0" Content="Name" />
+                        <Label Grid.Row="2" Grid.Column="0" Content="Manufacturer" />
+                        <Label Grid.Row="3" Grid.Column="0" Content="Price" />
+                        <Label Grid.Row="4" Grid.Column="0" Content="Condition" />
                         <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Text="{Binding SelectedItem.Name, ElementName=GadgetDataGrid}" />
                         <TextBox Grid.Row="2" Grid.Column="1" MaxLength="20" Margin="3" Text="{Binding SelectedItem.Manufacturer, ElementName=GadgetDataGrid}" />
                         <TextBox Grid.Row="3" Grid.Column="1" Margin="3" Text="{Binding SelectedItem.Price, ElementName=GadgetDataGrid}" />
                         <ComboBox Grid.Row="4" Grid.Column="1" Name="ComboBoxCarType" Margin="3"
                       ItemsSource="{Binding Conditions}"
                       SelectedItem="{Binding SelectedItem.Condition, ElementName=GadgetDataGrid}" />
-                        <ScrollViewer Grid.Row="5" Grid.ColumnSpan="2" Margin="5,0,0,0" HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto">
+                        <ScrollViewer Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" Margin="5,0,0,0" HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto">
                             <TextBlock Text="{Binding ErrorText}" Foreground="Red"/>
                         </ScrollViewer>
                     </Grid>
                     <!--Buttons-->
-                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0">
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right">
                         <Button Margin="1" Command="{Binding DeleteGadgetCommand}">
                             <Image Source="Images/garbage.png" />
                         </Button>
@@ -155,7 +155,7 @@
                         </ScrollViewer>
                     </Grid>
                     <!--Buttons-->
-                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0">
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right">
                         <Button Margin="1" Command="{Binding DeleteCustomerCommand}">
                             <Image Source="Images/garbage.png" />
                         </Button>
@@ -241,7 +241,7 @@
                         </ScrollViewer>
                     </Grid>
                     <!--Buttons-->
-                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0">
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right">
                         <Button Margin="1" Command="{Binding DeleteLoanCommand}">
                             <Image Source="Images/garbage.png" />
                         </Button>
