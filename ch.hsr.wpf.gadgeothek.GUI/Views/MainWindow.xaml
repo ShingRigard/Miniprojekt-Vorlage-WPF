@@ -83,7 +83,7 @@
                         <Button Margin="1" Command="{Binding SaveGadgetCommand}">
                             <Image Source="Images/save.png" />
                         </Button>
-                        <Button Margin="1" Command="{Binding NewGadgetCommand}">
+                        <Button Margin="1" Click="New_Click_Gadget">
                             <Image Source="Images/add.png" />
                         </Button>
                         <Button Margin="1" Command="{Binding LoadGadgetCommand}">
@@ -110,7 +110,7 @@
                         </Grid.RowDefinitions>
                         <Label Grid.ColumnSpan="2" Content="Client-List" FontStyle="Italic" FontWeight="Bold" />
                         <DataGrid Grid.Row="1"
-                                  Name="ClientDataGrid" IsSynchronizedWithCurrentItem="True"
+                                  Name="CustomerDataGrid" IsSynchronizedWithCurrentItem="True"
                                   AutoGenerateColumns="False"
                                   SelectionMode="Single" IsReadOnly="True" GridLinesVisibility="None"
                                   SelectionUnit="FullRow"
@@ -162,7 +162,7 @@
                         <Button Margin="1" Command="{Binding SaveCustomerCommand}">
                             <Image Source="Images/save.png" />
                         </Button>
-                        <Button Margin="1" Command="{Binding NewCustomerCommand}">
+                        <Button Margin="1" Click="New_Click_Customer">
                             <Image Source="Images/add.png" />
                         </Button>
                         <Button Margin="1" Command="{Binding LoadCustomerCommand}">
@@ -248,7 +248,7 @@
                         <Button Margin="1" Command="{Binding SaveLoanCommand}">
                             <Image Source="Images/save.png" />
                         </Button>
-                        <Button Margin="1" Command="{Binding NewLoanCommand}">
+                        <Button Margin="1" Click="New_Click_Loan">
                             <Image Source="Images/add.png" />
                         </Button>
                         <Button Margin="1" Command="{Binding LoadLoanCommand}">
