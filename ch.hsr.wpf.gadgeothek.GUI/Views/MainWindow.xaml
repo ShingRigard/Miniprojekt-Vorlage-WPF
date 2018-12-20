@@ -92,7 +92,7 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
-            <TabItem Header="Client">
+            <TabItem Header="Customer">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -108,7 +108,7 @@
                             <RowDefinition Height="30" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Label Grid.ColumnSpan="2" Content="Client-List" FontStyle="Italic" FontWeight="Bold" />
+                        <Label Grid.ColumnSpan="2" Content="Customer-List" FontStyle="Italic" FontWeight="Bold" />
                         <DataGrid Grid.Row="1"
                                   Name="CustomerDataGrid" IsSynchronizedWithCurrentItem="True"
                                   AutoGenerateColumns="False"
@@ -140,15 +140,15 @@
                             <ColumnDefinition Width="70" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.ColumnSpan="2" Content="Client Edit" FontStyle="Italic" FontWeight="Bold" />
+                        <Label Grid.ColumnSpan="2" Content="Customer Edit" FontStyle="Italic" FontWeight="Bold" />
                         <Label Grid.Row="1" Content="Student ID" />
                         <Label Grid.Row="2" Content="Name" />
                         <Label Grid.Row="3" Content="E-Mail" />
                         <Label Grid.Row="4" Content="Password" />
-                        <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Text="{Binding SelectedItem.Studentnumber, ElementName=ClientDataGrid}" />
-                        <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Text="{Binding SelectedItem.Name, ElementName=ClientDataGrid}" />
-                        <TextBox Grid.Row="3" Grid.Column="1" Margin="3" Text="{Binding SelectedItem.Email, ElementName=ClientDataGrid}" />
-                        <TextBox Grid.Row="4" Grid.Column="1" Margin="3" Text="{Binding SelectedItem.Password, ElementName=ClientDataGrid}" />
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Text="{Binding SelectedItem.Studentnumber, ElementName=CustomerDataGrid}" />
+                        <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Text="{Binding SelectedItem.Name, ElementName=CustomerDataGrid}" />
+                        <TextBox Grid.Row="3" Grid.Column="1" Margin="3" Text="{Binding SelectedItem.Email, ElementName=CustomerDataGrid}" />
+                        <TextBox Grid.Row="4" Grid.Column="1" Margin="3" Text="{Binding SelectedItem.Password, ElementName=CustomerDataGrid}" />
                         <ScrollViewer Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" Margin="5,0,0,0"
                                       HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                             <TextBlock Text="{Binding ErrorText}" Foreground="Red" />
