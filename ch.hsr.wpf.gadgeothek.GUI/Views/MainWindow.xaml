@@ -38,6 +38,7 @@
                       ItemsSource="{Binding Gadgets}" 
                       SelectedItem="{Binding SelectedGadget, Mode=TwoWay}">
                             <DataGrid.Columns>
+                                <DataGridTextColumn Header="Id" Binding="{Binding InventoryNumber}" />
                                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                                 <DataGridTextColumn Header="Manufacturer" Binding="{Binding Manufacturer}" />
                                 <DataGridTextColumn Header="Price" Binding="{Binding Price}" />
@@ -219,8 +220,7 @@
                             <ColumnDefinition Width="70" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="1" Content="Loan Edit" FontStyle="Italic"
-                               FontWeight="Bold" />
+                        <Label Grid.ColumnSpan="2" Content="Loan Edit" FontStyle="Italic" FontWeight="Bold" />
                         <Label Grid.Row="1" Grid.Column="0" Content="From" />
                         <Label Grid.Row="2" Grid.Column="0" Content="Until" />
                         <Label Grid.Row="3" Grid.Column="0" Content="Client" />

@@ -103,6 +103,7 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
 
         public MainWindowViewModel()
         {
+            #region Setup Connection to Server and its Data
             var serverString = ConfigurationManager.AppSettings.Get("server")?.ToString();
             libraryAdminService = new LibraryAdminService(serverString);
             var gadgets = libraryAdminService.GetAllGadgets();
@@ -129,11 +130,13 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
                 else
                     Customers = new ObservableCollection<Customer>(customers);
             }
-
+            #endregion
+            #region Setup Update Timer
             DispatcherTimer = new DispatcherTimer();
             DispatcherTimer.Tick += UpdateData;
             DispatcherTimer.Interval = new TimeSpan(0, 0, 10);
             DispatcherTimer.Start();
+            #endregion
         }
 
         private void UpdateData(object sender, EventArgs eventArgs)
@@ -144,6 +147,7 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
 
             if (updatedGadgets != null && updatedLoans != null && updatedCustomers != null)
             {
+                #region Loan Update
                 if (SelectedLoan == null)
                 {
                     Loans.Clear();
@@ -164,6 +168,8 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
                     if(!loanItem.Equals(SelectedLoan))
                     Loans.Add(loanItem);
                 }
+                #endregion
+                #region Customer and Gadget Update
                 if (SelectedLoan == null)
                 {
                     if (SelectedGadget == null)
@@ -207,6 +213,7 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
                             Customers.Add(CustomerItem);
                     }
                 }
+                #endregion
             }
         }
 
