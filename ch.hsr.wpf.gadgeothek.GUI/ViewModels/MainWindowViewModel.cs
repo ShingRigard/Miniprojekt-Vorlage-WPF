@@ -157,7 +157,7 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
                     List<Loan> LoanList = Loans.ToList();
                     foreach(Loan loanItem in LoanList)
                     {
-                        if (!loanItem.Equals(SelectedLoan))
+                        if (!loanItem.Id.Equals(SelectedLoan.Id))
                         {
                             Loans.Remove(loanItem);
                         }
@@ -165,7 +165,7 @@ namespace ch.hsr.wpf.gadgeothek.GUI.ViewModels
                 }
                 foreach(Loan loanItem in updatedLoans)
                 {
-                    if(!loanItem.Equals(SelectedLoan))
+                    if(SelectedLoan==null||!loanItem.Id.Equals(SelectedLoan.Id))
                     Loans.Add(loanItem);
                 }
                 #endregion
